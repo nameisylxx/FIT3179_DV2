@@ -30,7 +30,7 @@
     <div class="pure-g">
       <div class="pure-u-2-3">
         <h1>From farm to cafe</h1>
-        <p class="subtitle">Australia grows almost no coffee, but about half of us drink it every week.
+        <p class="subtitle">Australia grows very little coffee, but about half of us drink it every week.
           This page follows coffee from our cafes back to the farms that grow it, and on to the market that sets
           its price.</p>
       </div>
@@ -82,9 +82,9 @@
     <div class="pure-g">
       <div class="pure-u-1-1">
         <h2 class="section-title">2. Where our coffee comes from</h2>
-        <p class="lead">None of those cafes are served by an Australian farm. In 2025 Australia brought in 112
-          million kilograms of coffee from 22 coffee-growing countries, which is about four kilograms of beans for
-          every person in the country. Five of those countries supply seven of every ten kilograms.</p>
+        <p class="lead">Those beans travel a long way. In 2025 Australia imported 112 million kilograms of coffee
+          from 22 coffee-growing countries, which is about four kilograms of beans for every person in the
+          country. Five of those countries supply seven of every ten kilograms.</p>
       </div>
     </div>
     <!-- end pure grid group -->
@@ -118,7 +118,8 @@
       <div class="pure-u-1-1">
         <h2 class="section-title">3. At the source</h2>
         <p class="lead">Go one step further back and the picture narrows again. The world grew 10.6 million tonnes
-          of coffee in 2024 across 76 countries, and Australia is not on that list at all. Brazil, Vietnam,
+          of coffee in 2024, across the 76 countries the FAO keeps records for. Australia is not one of them.
+          Brazil, Vietnam,
           Colombia, Indonesia and Ethiopia between them grow close to three quarters of it, so a bad season in any
           one of them is eventually felt in every cafe in section 1.</p>
       </div>
@@ -190,6 +191,76 @@
           here sets. The businesses at the end of that chain are small ones: nine in ten have fewer than twenty
           staff, and a quarter of Victoria's have no staff at all. When the wholesale price moves, they are the
           ones who decide whether to wear it or pass it on.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font">
+        <h2 class="section-title">About the data</h2>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="description description-left small-font">
+        <h3>Where the numbers come from</h3>
+        <ul>
+          <li><strong>Cafes and restaurants, by state and by number of employees:</strong>
+            <a href="https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits/jul2021-jun2025">Australian
+              Bureau of Statistics, Counts of Australian Businesses</a>, data cube 2, released 16 December 2025.
+            Businesses operating at the end of June 2024 and June 2025.</li>
+          <li><strong>State populations:</strong> Australian Bureau of Statistics, National, state and territory
+            population,
+            <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/jun-2024">June
+              2024</a> and
+            <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/jun-2025">June
+              2025</a>.</li>
+          <li><strong>Coffee imported into Australia:</strong> <a href="https://comtradeplus.un.org/">UN
+              Comtrade</a>, Australia's own import records, customs code 0901, calendar year 2025.</li>
+          <li><strong>Coffee grown and yield per hectare:</strong> Food and Agriculture Organization of the United
+            Nations, via Our World in Data &mdash;
+            <a href="https://ourworldindata.org/grapher/coffee-bean-production">production</a> and
+            <a href="https://ourworldindata.org/grapher/coffee-yields">yield</a>, 1961 to 2024.</li>
+          <li><strong>Wholesale prices:</strong>
+            <a href="https://www.ico.org/documents/cy2025-26/cmr-0926-e.pdf">International Coffee Organization,
+              Coffee Market Report, September 2026</a>, October 2025 to September 2026.</li>
+          <li><strong>Half of us drink coffee weekly:</strong>
+            <a href="https://www.roymorgan.com/findings/10068-thinknewsbrands-total-news-readership-media-release-september-2025">Roy
+              Morgan Research</a>, 24 November 2025 (51% of Australians aged 14 and over).</li>
+          <li><strong>Map shapes and country locations:</strong>
+            <a href="https://github.com/topojson/world-atlas">World Atlas</a> (Natural Earth),
+            <a href="https://github.com/rowanhogan/australian-states">Australian state boundaries by Rowan
+              Hogan</a>,
+            <a href="https://github.com/dr5hn/countries-states-cities-database">country coordinates by
+              dr5hn</a>.</li>
+        </ul>
+        </div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="description description-right small-font">
+        <h3>Good to know</h3>
+        <ul>
+          <li>The Australian Bureau of Statistics counts cafes and restaurants together in one industry class
+            (4511), so these numbers include restaurants. They count businesses, not shop fronts.</li>
+          <li>The Food and Agriculture Organization keeps no coffee production record for Australia. That is not
+            the same as saying Australia grows none: Australia does have a small coffee industry, but it is too
+            small to appear in this dataset, so this page cannot measure it.</li>
+          <li>The import figures cover the 22 coffee-growing countries Australia bought from in 2025. Countries
+            that mainly re-export coffee, such as Italy and Switzerland, are left out, so the real total of coffee
+            entering Australia is higher than the number shown here.</li>
+          <li>On the flow map every line ends at the middle of Australia, not at the port where the coffee
+            arrived.</li>
+          <li>The Central African Republic and Guinea are left out of the production charts. Their reported output
+            jumps 5 to 30 times after 2015, which looks like a change in estimating method rather than a
+            harvest.</li>
+          <li>The prices are world wholesale prices for green beans. They are not the price of a cup of coffee in
+            an Australian cafe.</li>
+        </ul>
+        <p><strong>Created by Liuxiaoxi Yang</strong>, October 2026. FIT3179 Data Visualisation 2, Monash
+          University. Charts built with Vega-Lite and Vega.</p>
+        <p>AI acknowledgement: AI tools (ChatGPT and Claude) were used to explore the page layout, help write the
+          code, draw the decorative illustration, and check the wording of the text. All data come from the
+          sources listed here.</p>
+        </div>
       </div>
     </div>
     <!-- end pure grid group -->

@@ -59,6 +59,23 @@ h1 {
   font-size: 14px;
 }
 
+.small-font ul {
+  padding-left: 18px;
+  line-height: 1.55;
+}
+
+.small-font li {
+  margin-bottom: 8px;
+}
+
+.small-font h3 {
+  margin-bottom: 6px;
+}
+
+.small-font a {
+  color: #9c4420;
+}
+
 .subtitle {
   color: #6b5847;
   font-size: 18px;
