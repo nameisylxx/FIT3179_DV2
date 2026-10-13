@@ -76,6 +76,24 @@ h1 {
   color: #9c4420;
 }
 
+.page-footer {
+  border-top: 2px solid #9c4420;
+  margin-top: 10px;
+  padding-top: 16px;
+  font-size: 14px;
+  color: #4a3b2e;
+}
+
+.page-footer p {
+  margin: 0 0 6px 0;
+}
+
+.byline {
+  font-size: 17px;
+  font-weight: 700;
+  color: #9c4420;
+}
+
 .subtitle {
   color: #6b5847;
   font-size: 18px;
