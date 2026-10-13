@@ -1,0 +1,88 @@
+body * {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  font-weight: 900;
+}
+
+html,
+body {
+  background-color: #E0D2BE;
+}
+
+.page {
+  box-sizing: border-box;
+  max-width: 1100px;
+  background-color: #F3E9DA;
+  margin: auto;
+  padding: 50px;
+  padding-top: 35px;
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding: 20px;
+  }
+}
+
+.vis-container {
+  width: 100%;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  margin-left: auto;
+}
+
+.description h2,
+h1 {
+  margin-top: 0px;
+}
+
+.description-right {
+  padding-left: 20px;
+}
+
+.description-left {
+  padding-right: 20px;
+}
+
+.pure-g {
+  margin-bottom: 40px;
+}
+
+.small-font {
+  font-size: 14px;
+}
+
+.subtitle {
+  color: #6b5847;
+  font-size: 18px;
+}
+
+.section-title {
+  border-bottom: 2px solid #9c4420;
+  color: #9c4420;
+  padding-bottom: 6px;
+}
+
+.lead {
+  max-width: 760px;
+  color: #4a3b2e;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 0px;
+}
+
+.closing {
+  max-width: 760px;
+  border-top: 1px solid #c9b79d;
+  padding-top: 18px;
+  color: #4a3b2e;
+  font-size: 16px;
+  line-height: 1.6;
+}

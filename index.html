@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>From farm to cafe | Coffee in Australia</title>
+  <!-- Import Vega & Vega-Lite -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-2-3">
+        <h1>From farm to cafe</h1>
+        <p class="subtitle">Australia grows almost no coffee, but about half of us drink it every week.
+          This page follows coffee from our cafes back to the farms that grow it, and on to the market that sets
+          its price.</p>
+      </div>
+      <div class="pure-u-1-3">
+        <img src="images/coffee_cup.png" class="hero-image" alt="">
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2 class="section-title">1. Coffee in Australia</h2>
+        <p class="lead">Australia had 56,304 cafes and restaurants in June 2025, 616 more than a year before. But the
+          population grew faster than the shops did, so there are now slightly fewer cafes per person than there
+          were in 2024. Victoria is still the most cafe-dense state, with 25 for every 10,000 people &mdash; more
+          than two and a half times the Northern Territory.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div id="vis1" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-2">
+        <div id="vis2" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-3">
+        <div class="description description-left">
+          <h2>Small businesses</h2>
+          <p>Nine in ten cafes and restaurants in Australia have fewer than 20 employees. In Victoria one in four
+            has no employees at all, which means the owner does the work.</p>
+        </div>
+      </div>
+      <div class="pure-u-2-3">
+        <div id="vis3" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2 class="section-title">2. Where our coffee comes from</h2>
+        <p class="lead">None of those cafes are served by an Australian farm. In 2025 Australia brought in 112
+          million kilograms of coffee from 22 coffee-growing countries, which is about four kilograms of beans for
+          every person in the country. Five of those countries supply seven of every ten kilograms.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis4" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div id="vis5" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="description description-right">
+          <h2>Our closest neighbour</h2>
+          <p>Brazil supplies more than a quarter of the coffee we import from coffee-growing countries.
+            Papua New Guinea, our nearest neighbour, is the fourth-biggest source.</p>
+          <p>Lines on the map above end at the middle of Australia, not at the port where the coffee arrived.</p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2 class="section-title">3. At the source</h2>
+        <p class="lead">Go one step further back and the picture narrows again. The world grew 10.6 million tonnes
+          of coffee in 2024 across 76 countries, and Australia is not on that list at all. Brazil, Vietnam,
+          Colombia, Indonesia and Ethiopia between them grow close to three quarters of it, so a bad season in any
+          one of them is eventually felt in every cafe in section 1.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis6" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-2-3">
+        <div id="vis7" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-3">
+        <div class="description description-right">
+          <h2>Yield</h2>
+          <p>Yield is how much coffee a farm grows on each hectare of land. Vietnam gets about three tonnes per
+            hectare, over four times as much as Ethiopia.</p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div id="vis9" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="description description-right">
+          <h2>Changing places</h2>
+          <p>Vietnam grew almost no coffee in 1990. It was 17th in the world. By 2000 it was second, and it has
+            stayed there ever since. Today it grows about 22 times as much coffee as it did in 1990.</p>
+          <p>Mexico went the other way. It was the third-biggest grower in 1990 and has slipped to 11th.</p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2 class="section-title">4. The price of the bean</h2>
+        <p class="lead">Between the farm and the cafe sits a commodity market. Wholesale prices fell about a fifth
+          from their November 2025 high to September 2026, and Arabica beans kept costing roughly twice what
+          Robusta did all the way through.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis8" class="vis-container"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <p class="closing">So the coffee in an Australian cup travels a long way and passes through a price nobody
+          here sets. The businesses at the end of that chain are small ones: nine in ten have fewer than twenty
+          staff, and a quarter of Victoria's have no staff at all. When the wholesale price moves, they are the
+          ones who decide whether to wear it or pass it on.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+  </div> <!-- end page -->
+
+  <script type="text/javascript">
+    var specVis1 = "js/au_cafe_choropleth.vg.json";
+    var specVis2 = "js/au_cafe_slopegraph.vg.json";
+    var specVis3 = "js/au_cafe_business_size_stacked_bar.vg.json";
+    var specVis4 = "js/au_coffee_import_flow_map.vg.json";
+    var specVis5 = "js/au_coffee_supplier_ranked_bar.vg.json";
+    var specVis6 = "js/world_production_symbol_map.vg.json";
+    var specVis7 = "js/world_yield_heatmap.vg.json";
+    var specVis8 = "js/coffee_price_line_chart.vg.json";
+    var specVis9 = "js/world_production_bump_chart.vg.json";
+
+    vegaEmbed('#vis1', specVis1, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis2', specVis2, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis3', specVis3, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis4', specVis4, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis5', specVis5, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis6', specVis6, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis7', specVis7, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis8', specVis8, { "actions": false }).catch(console.error);
+    vegaEmbed('#vis9', specVis9, { "actions": false }).catch(console.error);
+  </script>
+
+</body>
+
+</html>

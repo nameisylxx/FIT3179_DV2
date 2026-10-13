@@ -1,0 +1,362 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Coffee beans imported into Australia, by country of origin, 2025",
+    "subtitle": "Line thickness and circle size show tonnes imported from 22 coffee-growing countries"
+  },
+  "width": "container",
+  "height": 470,
+  "projection": {
+    "type": "equalEarth",
+    "rotate": [
+      -150,
+      0,
+      0
+    ]
+  },
+  "data": {
+    "url": "data/au_coffee_imports_by_origin.csv"
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(datum.origin_longitude)",
+      "as": "olon"
+    },
+    {
+      "calculate": "toNumber(datum.origin_latitude)",
+      "as": "olat"
+    },
+    {
+      "calculate": "toNumber(datum.dest_longitude)",
+      "as": "dlon"
+    },
+    {
+      "calculate": "toNumber(datum.dest_latitude)",
+      "as": "dlat"
+    },
+    {
+      "calculate": "toNumber(datum.net_weight_kg) / 1000",
+      "as": "tonnes"
+    },
+    {
+      "calculate": "toNumber(datum.trade_value_usd)",
+      "as": "value_usd"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "tonnes",
+          "as": "total_tonnes"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.tonnes / datum.total_tonnes",
+      "as": "share"
+    },
+    {
+      "calculate": "((datum.olon - 150 + 540) % 360) - 180",
+      "as": "xo"
+    },
+    {
+      "calculate": "((datum.dlon - 150 + 540) % 360) - 180",
+      "as": "xd"
+    },
+    {
+      "calculate": "((((datum.xo + datum.xd) / 2) + 150 + 540) % 360) - 180",
+      "as": "mid_lon"
+    },
+    {
+      "calculate": "(datum.olat + datum.dlat) / 2 + 0.34 * abs(datum.xo - datum.xd)",
+      "as": "mid_lat"
+    },
+    {
+      "calculate": "[0, 1, 2]",
+      "as": "pt"
+    },
+    {
+      "flatten": [
+        "pt"
+      ]
+    },
+    {
+      "calculate": "datum.pt === 0 ? datum.olon : (datum.pt === 1 ? datum.mid_lon : datum.dlon)",
+      "as": "plon"
+    },
+    {
+      "calculate": "datum.pt === 0 ? datum.olat : (datum.pt === 1 ? datum.mid_lat : datum.dlat)",
+      "as": "plat"
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "data/world_110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.id !== '010'"
+        },
+        {
+          "calculate": "datum.id === '036' ? 'Australia' : 'Other'",
+          "as": "is_au"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#C9B79D",
+        "strokeWidth": 0.6
+      },
+      "encoding": {
+        "fill": {
+          "field": "is_au",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Australia",
+              "Other"
+            ],
+            "range": [
+              "#5A4636",
+              "#DCCFBB"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "interpolate": "basis",
+        "stroke": "#D9902B",
+        "opacity": 0.6
+      },
+      "encoding": {
+        "longitude": {
+          "field": "plon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "plat",
+          "type": "quantitative"
+        },
+        "detail": {
+          "field": "origin_country",
+          "type": "nominal"
+        },
+        "order": {
+          "field": "pt",
+          "type": "quantitative"
+        },
+        "strokeWidth": {
+          "field": "tonnes",
+          "type": "quantitative",
+          "scale": {
+            "range": [
+              0.8,
+              9
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.pt === 0"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.9,
+        "stroke": "#8A5A12",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "olon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "olat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "tonnes",
+          "type": "quantitative",
+          "scale": {
+            "range": [
+              40,
+              1600
+            ]
+          },
+          "legend": {
+            "title": "Tonnes imported",
+            "orient": "bottom-left",
+            "values": [
+              5000,
+              15000,
+              25000
+            ],
+            "format": ",.0f",
+            "symbolFillColor": "#D9902B",
+            "symbolStrokeColor": "#8A5A12"
+          }
+        },
+        "color": {
+          "value": "#D9902B"
+        },
+        "tooltip": [
+          {
+            "field": "origin_country",
+            "title": "Country of origin"
+          },
+          {
+            "field": "tonnes",
+            "title": "Tonnes imported",
+            "format": ",.0f"
+          },
+          {
+            "field": "share",
+            "title": "Share of these 22 countries",
+            "format": ".1%"
+          },
+          {
+            "field": "value_usd",
+            "title": "Value (US dollars)",
+            "format": "$,.0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.pt === 0 && datum.tonnes > 4500"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12.5,
+        "fontWeight": 600,
+        "dy": -16,
+        "color": "#2B1D13"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "olon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "olat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "origin_country"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": -168,
+            "lat": -47
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#2B1D13",
+        "text": [
+          "Brazil supplies more than a quarter",
+          "(27%) of the coffee we import from",
+          "these growing countries."
+        ]
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 48,
+            "lat": -48
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#2B1D13",
+        "text": [
+          "Papua New Guinea, our nearest",
+          "neighbour, is the 4th-biggest source."
+        ]
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#2B1D13",
+      "subtitleFontSize": 12.5,
+      "subtitleColor": "#6B5847",
+      "subtitlePadding": 4
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

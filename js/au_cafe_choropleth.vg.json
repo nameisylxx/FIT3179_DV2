@@ -1,0 +1,337 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Cafés and restaurants per 10,000 people, by state",
+    "subtitle": "Businesses operating at June 2025. Darker means more per person"
+  },
+  "width": "container",
+  "height": 400,
+  "padding": {
+    "left": 5,
+    "top": 5,
+    "right": 20,
+    "bottom": 5
+  },
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -134,
+      0,
+      0
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/au_states_topo.json",
+        "format": {
+          "type": "topojson",
+          "feature": "au_states_rowanhogan"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "data": {
+              "url": "data/au_cafes_restaurants_by_state.csv"
+            },
+            "key": "state_name",
+            "fields": [
+              "cafes_per_10000_people"
+            ]
+          }
+        },
+        {
+          "calculate": "toNumber(datum.cafes_per_10000_people)",
+          "as": "per_10k"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#8A7256",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "per_10k",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [
+              12,
+              16,
+              20,
+              24
+            ],
+            "range": [
+              "#F6DCBE",
+              "#EFC098",
+              "#DE8E5C",
+              "#B4532A",
+              "#6E2B10"
+            ]
+          },
+          "legend": {
+            "title": "Per 10,000 people",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolType": "square",
+            "symbolSize": 150,
+            "offset": 6
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.STATE_NAME",
+            "title": "State"
+          },
+          {
+            "field": "per_10k",
+            "title": "Cafés and restaurants per 10,000 people",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "state_name": "New South Wales",
+            "abbr": "NSW",
+            "lon": 146.6,
+            "lat": -32.4,
+            "dark": true
+          },
+          {
+            "state_name": "Victoria",
+            "abbr": "VIC",
+            "lon": 143.6,
+            "lat": -36.9,
+            "dark": true
+          },
+          {
+            "state_name": "Queensland",
+            "abbr": "QLD",
+            "lon": 144.2,
+            "lat": -22.8,
+            "dark": false
+          },
+          {
+            "state_name": "South Australia",
+            "abbr": "SA",
+            "lon": 135.0,
+            "lat": -30.2,
+            "dark": false
+          },
+          {
+            "state_name": "Western Australia",
+            "abbr": "WA",
+            "lon": 122.0,
+            "lat": -25.5,
+            "dark": false
+          },
+          {
+            "state_name": "Tasmania",
+            "abbr": "TAS",
+            "lon": 146.7,
+            "lat": -42.2,
+            "dark": false
+          },
+          {
+            "state_name": "Northern Territory",
+            "abbr": "NT",
+            "lon": 133.3,
+            "lat": -19.5,
+            "dark": false
+          },
+          {
+            "state_name": "Australian Capital Territory",
+            "abbr": "ACT",
+            "lon": 153.6,
+            "lat": -35.9,
+            "dark": false
+          }
+        ]
+      },
+      "transform": [
+        {
+          "lookup": "state_name",
+          "from": {
+            "data": {
+              "url": "data/au_cafes_restaurants_by_state.csv"
+            },
+            "key": "state_name",
+            "fields": [
+              "cafes_per_10000_people"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.abbr + ' ' + format(toNumber(datum.cafes_per_10000_people), '.1f')",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.dark",
+            "value": "#FFFFFF"
+          },
+          "value": "#2B1D13"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 149.1,
+            "lat": -35.4,
+            "lon2": 152.0,
+            "lat2": -35.8
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#2B1D13",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 131.0,
+            "lat": -37.4,
+            "lon2": 140.6,
+            "lat2": -37.3
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#2B1D13",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 112.5,
+            "lat": -37.9
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#2B1D13",
+        "lineBreak": "\n",
+        "text": [
+          "Victoria leads Australia: 25 per",
+          "10,000 people, even though NSW",
+          "has more cafés and restaurants."
+        ]
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#2B1D13",
+      "subtitleFontSize": 12.5,
+      "subtitleColor": "#6B5847",
+      "subtitlePadding": 4
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

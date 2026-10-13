@@ -1,0 +1,277 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Tonnes of coffee harvested per hectare, 2015 to 2024",
+    "subtitle": "The ten biggest coffee-growing countries"
+  },
+  "width": "container",
+  "height": 360,
+  "padding": {
+    "left": 5,
+    "top": 5,
+    "right": 16,
+    "bottom": 5
+  },
+  "data": {
+    "url": "data/coffee_yield_by_country.csv"
+  },
+  "transform": [
+    {
+      "filter": "indexof(['Vietnam','Brazil','Honduras','Colombia','Peru','India','Ethiopia','Indonesia','Guatemala','Uganda'], datum.country_name) >= 0"
+    },
+    {
+      "filter": "datum.yield_tonnes_per_hectare !== '' && toNumber(datum.year) >= 2015"
+    },
+    {
+      "calculate": "toNumber(datum.yield_tonnes_per_hectare)",
+      "as": "yield_t_ha"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#F3E9DA",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "axis": {
+            "orient": "top",
+            "title": null,
+            "labelAngle": 0,
+            "labelFontSize": 12,
+            "domain": false,
+            "ticks": false,
+            "labelExpr": "toNumber(datum.value) % 2 === 0 ? datum.value : ''"
+          }
+        },
+        "y": {
+          "field": "country_name",
+          "type": "nominal",
+          "sort": [
+            "Vietnam",
+            "Brazil",
+            "Honduras",
+            "Colombia",
+            "Peru",
+            "India",
+            "Ethiopia",
+            "Indonesia",
+            "Guatemala",
+            "Uganda"
+          ],
+          "axis": {
+            "title": null,
+            "labelFontSize": 13,
+            "labelFontWeight": 600,
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "color": {
+          "field": "yield_t_ha",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0.4,
+              3.0
+            ],
+            "range": [
+              "#F3EAF4",
+              "#DCC3E0",
+              "#BC8FC6",
+              "#8E5A9E",
+              "#5D3170"
+            ]
+          },
+          "legend": {
+            "title": "Tonnes per hectare",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 220,
+            "gradientThickness": 12,
+            "values": [
+              0.5,
+              1,
+              1.5,
+              2,
+              2.5,
+              3
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "country_name",
+            "title": "Country"
+          },
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "yield_t_ha",
+            "title": "Tonnes per hectare",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "country_name",
+          "type": "nominal",
+          "sort": [
+            "Vietnam",
+            "Brazil",
+            "Honduras",
+            "Colombia",
+            "Peru",
+            "India",
+            "Ethiopia",
+            "Indonesia",
+            "Guatemala",
+            "Uganda"
+          ]
+        },
+        "text": {
+          "field": "yield_t_ha",
+          "type": "quantitative",
+          "format": ".1f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.yield_t_ha > 2.0",
+            "value": "#FFFFFF"
+          },
+          "value": "#2B1D13"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.country_name === 'Vietnam'"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": null,
+        "stroke": "#2B1D13",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "country_name",
+          "type": "nominal",
+          "sort": [
+            "Vietnam",
+            "Brazil",
+            "Honduras",
+            "Colombia",
+            "Peru",
+            "India",
+            "Ethiopia",
+            "Indonesia",
+            "Guatemala",
+            "Uganda"
+          ]
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": "2024",
+            "country_name": "Vietnam"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "dx": 38,
+        "dy": -10,
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#2B1D13",
+        "text": [
+          "Vietnam gets 3 tonnes",
+          "per hectare: over 4",
+          "times Ethiopia."
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "country_name",
+          "type": "nominal",
+          "sort": [
+            "Vietnam",
+            "Brazil",
+            "Honduras",
+            "Colombia",
+            "Peru",
+            "India",
+            "Ethiopia",
+            "Indonesia",
+            "Guatemala",
+            "Uganda"
+          ]
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#2B1D13",
+      "subtitleFontSize": 12.5,
+      "subtitleColor": "#6B5847",
+      "subtitlePadding": 4
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}
