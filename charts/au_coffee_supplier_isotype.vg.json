@@ -67,7 +67,7 @@
         "tooltip": [
           {"field": "origin_country", "title": "Country of origin"},
           {"field": "tonnes", "type": "quantitative", "title": "Tonnes imported", "format": ",.0f"},
-          {"field": "sacks", "type": "quantitative", "title": "Sacks shown (2,000 t each)"}
+          {"field": "sacks", "type": "quantitative", "title": "Sacks shown (one sack = 2,000 tonnes)"}
         ]
       }
     },

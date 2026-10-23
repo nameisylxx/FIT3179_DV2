@@ -304,7 +304,7 @@
           {
             "field": "arabica",
             "type": "quantitative",
-            "title": "Arabica, average (US¢/lb)",
+            "title": "Arabica, average of three groups (US cents per pound)",
             "format": ".0f"
           },
           {
@@ -328,13 +328,13 @@
           {
             "field": "robusta",
             "type": "quantitative",
-            "title": "Robusta (US¢/lb)",
+            "title": "Robusta (US cents per pound)",
             "format": ".0f"
           },
           {
             "field": "ratio",
             "type": "quantitative",
-            "title": "Arabica ÷ Robusta",
+            "title": "Arabica price as a multiple of Robusta",
             "format": ".2f"
           }
         ]
@@ -538,7 +538,7 @@
         "color": "#2B1D13",
         "text": [
           "Both prices fell from",
-          "October to June, then",
+          "November to June, then",
           "rose together in July.",
           "Arabica stayed 1.8 to 2",
           "times the Robusta price."
