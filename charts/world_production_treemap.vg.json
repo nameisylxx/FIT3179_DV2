@@ -4,8 +4,7 @@
   "padding": 6,
   "height": 520,
   "title": {
-    "text": "Who grows the world's coffee? Tonnes of coffee beans, 2024",
-    "subtitle": "Each tile is a country, grouped by region. Numbers are thousands of tonnes",
+    "text": "Coffee grown in 2024, thousand tonnes, by region and country",
     "anchor": "start",
     "fontSize": 14,
     "fontWeight": 600,
@@ -20,35 +19,100 @@
     {
       "name": "width",
       "init": "(containerSize()[0] > 100 ? containerSize()[0] : 540) - 12",
-      "on": [{"events": "window:resize", "update": "(containerSize()[0] > 100 ? containerSize()[0] : 540) - 12"}]
+      "on": [
+        {
+          "events": "window:resize",
+          "update": "(containerSize()[0] > 100 ? containerSize()[0] : 540) - 12"
+        }
+      ]
     }
   ],
   "data": [
     {
       "name": "tree",
       "url": "data/processed/coffee_production_2024_treemap.csv",
-      "format": {"type": "csv", "parse": {"id": "number", "parent": "number", "production_tonnes": "number"}},
+      "format": {
+        "type": "csv",
+        "parse": {
+          "id": "number",
+          "parent": "number",
+          "production_tonnes": "number"
+        }
+      },
       "transform": [
-        {"type": "stratify", "key": "id", "parentKey": "parent"},
+        {
+          "type": "stratify",
+          "key": "id",
+          "parentKey": "parent"
+        },
         {
           "type": "treemap",
           "field": "production_tonnes",
-          "sort": {"field": "value", "order": "descending"},
+          "sort": {
+            "field": "value",
+            "order": "descending"
+          },
           "method": "binary",
           "round": true,
           "paddingInner": 3,
           "paddingOuter": 3,
           "paddingTop": 24,
-          "size": [{"signal": "width"}, {"signal": "height"}]
+          "size": [
+            {
+              "signal": "width"
+            },
+            {
+              "signal": "height"
+            }
+          ]
         }
       ]
     },
-    {"name": "leaves", "source": "tree", "transform": [{"type": "filter", "expr": "datum.depth === 2"}]},
-    {"name": "regions", "source": "tree", "transform": [{"type": "filter", "expr": "datum.depth === 1"}]},
-    {"name": "brazil", "source": "leaves", "transform": [{"type": "filter", "expr": "datum.name === 'Brazil'"}]}
+    {
+      "name": "leaves",
+      "source": "tree",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.depth === 2"
+        }
+      ]
+    },
+    {
+      "name": "regions",
+      "source": "tree",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.depth === 1"
+        }
+      ]
+    },
+    {
+      "name": "brazil",
+      "source": "leaves",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.name === 'Brazil'"
+        }
+      ]
+    }
   ],
   "scales": [
-    {"name": "green", "type": "sqrt", "domain": [0, 3400000], "range": ["#E3EDD9", "#2F5A22"], "clamp": true}
+    {
+      "name": "green",
+      "type": "sqrt",
+      "domain": [
+        0,
+        3400000
+      ],
+      "range": [
+        "#E6ECDD",
+        "#3F5A31"
+      ],
+      "clamp": true
+    }
   ],
   "legends": [
     {
@@ -62,103 +126,233 @@
       "labelFontSize": 12,
       "gradientLength": 220,
       "gradientThickness": 12,
-      "values": [100000, 500000, 1000000, 2000000, 3000000],
+      "values": [
+        100000,
+        500000,
+        1000000,
+        2000000,
+        3000000
+      ],
       "format": ",.0f",
-      "encode": {"labels": {"update": {"fill": {"value": "#4A3B2E"}}}}
+      "encode": {
+        "labels": {
+          "update": {
+            "fill": {
+              "value": "#4A3B2E"
+            }
+          }
+        }
+      }
     }
   ],
   "marks": [
     {
       "type": "rect",
-      "from": {"data": "regions"},
+      "from": {
+        "data": "regions"
+      },
       "encode": {
         "update": {
-          "x": {"field": "x0"},
-          "y": {"field": "y0"},
-          "x2": {"field": "x1"},
-          "y2": {"field": "y1"},
-          "fill": {"value": "#F1EFEA"},
-          "stroke": {"value": "#C9C2B6"},
-          "strokeWidth": {"value": 1}
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y2": {
+            "field": "y1"
+          },
+          "fill": {
+            "value": "#F1EFEA"
+          },
+          "stroke": {
+            "value": "#C9C2B6"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
         }
       }
     },
     {
       "type": "text",
-      "from": {"data": "regions"},
+      "from": {
+        "data": "regions"
+      },
       "encode": {
         "update": {
-          "x": {"field": "x0", "offset": 6},
-          "y": {"field": "y0", "offset": 16},
-          "text": {"signal": "datum.name === 'Central America & Mexico' && datum.x1 - datum.x0 < 200 ? 'Central America' : datum.name"},
-          "limit": {"signal": "datum.x1 - datum.x0 - 6"},
-          "font": {"value": "Inter, 'Helvetica Neue', Arial, sans-serif"},
-          "fontSize": {"value": 12},
-          "fontWeight": {"value": 700},
-          "fill": {"value": "#2B1D13"}
+          "x": {
+            "field": "x0",
+            "offset": 6
+          },
+          "y": {
+            "field": "y0",
+            "offset": 16
+          },
+          "text": {
+            "signal": "datum.name === 'Central America & Mexico' && datum.x1 - datum.x0 < 200 ? 'Central America' : datum.name"
+          },
+          "limit": {
+            "signal": "datum.x1 - datum.x0 - 6"
+          },
+          "font": {
+            "value": "Inter, 'Helvetica Neue', Arial, sans-serif"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fontWeight": {
+            "value": 700
+          },
+          "fill": {
+            "value": "#2B1D13"
+          }
         }
       }
     },
     {
       "type": "rect",
-      "from": {"data": "leaves"},
+      "from": {
+        "data": "leaves"
+      },
       "encode": {
         "update": {
-          "x": {"field": "x0"},
-          "y": {"field": "y0"},
-          "x2": {"field": "x1"},
-          "y2": {"field": "y1"},
-          "fill": {"scale": "green", "field": "production_tonnes"},
-          "stroke": {"value": "#FAF6F0"},
-          "strokeWidth": {"value": 1.5},
-          "tooltip": {"signal": "{'Country': datum.name === 'Other' ? 'Other ' + datum.region + ' countries' : datum.name, 'Region': datum.region, 'Tonnes grown': format(datum.production_tonnes, ',.0f')}"}
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y2": {
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "green",
+            "field": "production_tonnes"
+          },
+          "stroke": {
+            "value": "#FAF6F0"
+          },
+          "strokeWidth": {
+            "value": 1.5
+          },
+          "tooltip": {
+            "signal": "{'Country': datum.name === 'Other' ? 'Other ' + datum.region + ' countries' : datum.name, 'Region': datum.region, 'Tonnes grown': format(datum.production_tonnes, ',.0f')}"
+          }
         }
       }
     },
     {
       "type": "text",
-      "from": {"data": "leaves"},
+      "from": {
+        "data": "leaves"
+      },
       "encode": {
         "update": {
-          "x": {"field": "x0", "offset": 4},
-          "y": {"field": "y0", "offset": 16},
-          "text": {"signal": "(datum.x1 - datum.x0) > 40 && (datum.y1 - datum.y0) > 30 ? datum.name : ''"},
-          "limit": {"signal": "datum.x1 - datum.x0 - 2"},
-          "font": {"value": "Inter, 'Helvetica Neue', Arial, sans-serif"},
-          "fontSize": {"value": 12},
-          "fontWeight": {"value": 600},
-          "fill": {"signal": "datum.production_tonnes > 700000 ? '#FFFFFF' : '#1F2D17'"}
+          "x": {
+            "field": "x0",
+            "offset": 4
+          },
+          "y": {
+            "field": "y0",
+            "offset": 16
+          },
+          "text": {
+            "signal": "(datum.x1 - datum.x0) > 40 && (datum.y1 - datum.y0) > 30 ? datum.name : ''"
+          },
+          "limit": {
+            "signal": "datum.x1 - datum.x0 - 2"
+          },
+          "font": {
+            "value": "Inter, 'Helvetica Neue', Arial, sans-serif"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fill": {
+            "signal": "datum.production_tonnes > 700000 ? '#FFFFFF' : '#1F2D17'"
+          }
         }
       }
     },
     {
       "type": "text",
-      "from": {"data": "leaves"},
+      "from": {
+        "data": "leaves"
+      },
       "encode": {
         "update": {
-          "x": {"field": "x0", "offset": 4},
-          "y": {"field": "y0", "offset": 32},
-          "text": {"signal": "(datum.x1 - datum.x0) > 40 && (datum.y1 - datum.y0) > 46 ? format(datum.production_tonnes / 1000, ',.0f') : ''"},
-          "limit": {"signal": "datum.x1 - datum.x0 - 6"},
-          "font": {"value": "Inter, 'Helvetica Neue', Arial, sans-serif"},
-          "fontSize": {"value": 12},
-          "fill": {"signal": "datum.production_tonnes > 700000 ? '#FFFFFF' : '#1F2D17'"}
+          "x": {
+            "field": "x0",
+            "offset": 4
+          },
+          "y": {
+            "field": "y0",
+            "offset": 32
+          },
+          "text": {
+            "signal": "(datum.x1 - datum.x0) > 40 && (datum.y1 - datum.y0) > 46 ? format(datum.production_tonnes / 1000, ',.0f') : ''"
+          },
+          "limit": {
+            "signal": "datum.x1 - datum.x0 - 6"
+          },
+          "font": {
+            "value": "Inter, 'Helvetica Neue', Arial, sans-serif"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fill": {
+            "signal": "datum.production_tonnes > 700000 ? '#FFFFFF' : '#1F2D17'"
+          }
         }
       }
     },
     {
       "type": "text",
-      "from": {"data": "brazil"},
+      "from": {
+        "data": "brazil"
+      },
       "encode": {
         "update": {
-          "x": {"field": "x0", "offset": 9},
-          "y": {"field": "y1", "offset": -34},
-          "text": {"value": ["Brazil and Vietnam together", "grow half of the world's coffee."]},
-          "font": {"value": "Inter, 'Helvetica Neue', Arial, sans-serif"},
-          "fontSize": {"value": 13},
-          "fontWeight": {"value": "bold"},
-          "lineHeight": {"value": 17},
-          "fill": {"value": "#FFFFFF"}
+          "x": {
+            "field": "x0",
+            "offset": 9
+          },
+          "y": {
+            "field": "y1",
+            "offset": -34
+          },
+          "text": {
+            "value": [
+              "Brazil and Vietnam together",
+              "grow half of the world's coffee."
+            ]
+          },
+          "font": {
+            "value": "Inter, 'Helvetica Neue', Arial, sans-serif"
+          },
+          "fontSize": {
+            "value": 13
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "lineHeight": {
+            "value": 17
+          },
+          "fill": {
+            "value": "#FFFFFF"
+          }
         }
       }
     }

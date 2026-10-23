@@ -1,11 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "World coffee: how much was grown and how much was drunk",
-    "subtitle": [
-      "Coffee year 2024/25 (October 2024 to September 2025)",
-      "In millions of 60-kilogram bags"
-    ]
+    "text": "World coffee in 2024/25, million 60-kilogram bags"
   },
   "width": "container",
   "height": 320,
@@ -117,9 +113,9 @@
               "Shortfall"
             ],
             "range": [
-              "#4E7D3A",
-              "#5A6D7D",
-              "#1B7F79"
+              "#5F7D4C",
+              "#7E6D5F",
+              "#4A3B2E"
             ]
           },
           "legend": null
@@ -248,12 +244,11 @@
         "baseline": "middle",
         "fontSize": 13,
         "fontWeight": 600,
-        "color": "#1B7F79",
+        "color": "#4A3B2E",
         "text": [
-          "The world drank 6.3 million",
-          "bags more than it grew.",
-          "The ICO expects a surplus",
-          "of 3.0 million bags in 2025/26."
+          "Next year the ICO",
+          "expects a surplus of",
+          "3.0 million bags."
         ],
         "dx": -14
       },

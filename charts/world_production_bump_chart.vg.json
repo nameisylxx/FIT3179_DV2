@@ -1,8 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Rank among the world's coffee-growing countries",
-    "subtitle": "1 = biggest producer. Ranked by tonnes grown, 76 countries"
+    "text": "Production rank among 76 coffee-growing countries"
   },
   "width": "container",
   "height": 500,
@@ -93,9 +92,9 @@
               "Other"
             ],
             "range": [
-              "#4E7D3A",
+              "#5F7D4C",
               "#2B1D13",
-              "#8C8276"
+              "#968B7E"
             ]
           },
           "legend": null
@@ -243,7 +242,7 @@
         "baseline": "middle",
         "fontSize": 13,
         "fontWeight": 600,
-        "color": "#2F4F22",
+        "color": "#3F5A31",
         "dx": 14,
         "text": [
           "Vietnam jumped from 17th to 2nd",

@@ -1,14 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": [
-      "Out of every 100 coffee beans grown,",
-      "how many are Robusta?"
-    ],
-    "subtitle": [
-      "One square = 1% of world production, by coffee year (October",
-      "to September). 2025/26 is an ICO estimate"
-    ]
+    "text": "Robusta’s share of world coffee production, by coffee year"
   },
   "data": {
     "url": "data/processed/coffee_world_supply_demand_balance.csv"
@@ -108,9 +101,9 @@
                 "Arabica"
               ],
               "range": [
-                "#B5446E",
-                "#6E1F42",
-                "#D5DDEE"
+                "#A8607F",
+                "#5E2F47",
+                "#E6DED3"
               ]
             },
             "legend": {
@@ -171,7 +164,7 @@
           "lineBreak": "|",
           "fontSize": 12,
           "fontWeight": 600,
-          "color": "#6E1F42"
+          "color": "#5E2F47"
         },
         "encoding": {
           "x": {

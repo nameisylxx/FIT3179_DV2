@@ -1,14 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": [
-      "Arabica and Robusta wholesale prices,",
-      "October 2025 to September 2026"
-    ],
-    "subtitle": [
-      "Each dot is one month, joined in time order.",
-      "Arabica is the average of the three Arabica groups"
-    ]
+    "text": "Wholesale price in US cents per pound, coffee year 2025/26"
   },
   "width": "container",
   "height": 360,
@@ -78,7 +71,7 @@
       },
       "mark": {
         "type": "line",
-        "color": "#B9A893",
+        "color": "#B3A89B",
         "strokeDash": [
           5,
           4
@@ -128,7 +121,7 @@
         "angle": 0,
         "fontSize": 12,
         "fontStyle": "italic",
-        "color": "#8A7663",
+        "color": "#7E6D5F",
         "text": [
           "Line where Arabica costs",
           "exactly twice as much"
@@ -164,7 +157,7 @@
     {
       "mark": {
         "type": "line",
-        "color": "#8C5A3C",
+        "color": "#8C9AA8",
         "strokeWidth": 2,
         "opacity": 0.75,
         "interpolate": "linear"
@@ -280,8 +273,8 @@
               12
             ],
             "range": [
-              "#E3B98C",
-              "#5A2E14"
+              "#C3CFDA",
+              "#2F4A61"
             ]
           },
           "legend": null

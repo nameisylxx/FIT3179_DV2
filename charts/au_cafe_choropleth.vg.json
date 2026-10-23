@@ -1,8 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Cafés and restaurants per 10,000 people, by state",
-    "subtitle": "Businesses operating at June 2025. Darker means more per person"
+    "text": "Cafés and restaurants per 10,000 people, June 2025"
   },
   "width": "container",
   "height": 400,
@@ -69,11 +68,11 @@
               24
             ],
             "range": [
-              "#FBEEE3",
-              "#F2C9AA",
-              "#E39A6B",
-              "#B4532A",
-              "#6E2B10"
+              "#F6E3D2",
+              "#E9B996",
+              "#D08A5E",
+              "#A9562F",
+              "#6B2C12"
             ]
           },
           "legend": {

@@ -1,8 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Coffee beans imported into Australia, by country of origin, 2025",
-    "subtitle": "Line thickness and circle size show tonnes imported from 22 coffee-growing countries"
+    "text": "Coffee imported into Australia by country of origin, 2025"
   },
   "width": "container",
   "height": 470,
@@ -134,7 +133,7 @@
       "mark": {
         "type": "line",
         "interpolate": "basis",
-        "stroke": "#D9902B",
+        "stroke": "#B07A2E",
         "opacity": 0.6
       },
       "encoding": {
@@ -176,7 +175,7 @@
       "mark": {
         "type": "circle",
         "opacity": 0.9,
-        "stroke": "#8A5A12",
+        "stroke": "#7E561E",
         "strokeWidth": 1
       },
       "encoding": {
@@ -206,12 +205,12 @@
               25000
             ],
             "format": ",.0f",
-            "symbolFillColor": "#D9902B",
-            "symbolStrokeColor": "#8A5A12"
+            "symbolFillColor": "#B07A2E",
+            "symbolStrokeColor": "#7E561E"
           }
         },
         "color": {
-          "value": "#D9902B"
+          "value": "#B07A2E"
         },
         "tooltip": [
           {

@@ -1,40 +1,87 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Top 8 countries supplying Australia's coffee, 2025",
-    "subtitle": ["Coffee beans imported from coffee-growing countries.", "One sack = 2,000 tonnes, rounded to the nearest sack"]
+    "text": "Top eight suppliers, tonnes imported in 2025"
   },
   "width": "container",
   "height": 400,
-  "data": {"url": "data/processed/au_coffee_imports_by_origin.csv"},
+  "data": {
+    "url": "data/processed/au_coffee_imports_by_origin.csv"
+  },
   "transform": [
-    {"calculate": "toNumber(datum.net_weight_kg) / 1000", "as": "tonnes"},
     {
-      "window": [{"op": "rank", "as": "rank"}],
-      "sort": [{"field": "tonnes", "order": "descending"}]
+      "calculate": "toNumber(datum.net_weight_kg) / 1000",
+      "as": "tonnes"
     },
-    {"filter": "datum.rank <= 8"},
-    {"calculate": "max(1, round(datum.tonnes / 2000))", "as": "sacks"},
-    {"calculate": "datum.origin_country === 'Papua New Guinea' ? 'Nearest neighbour' : 'Other'", "as": "highlight"}
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "tonnes",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "filter": "datum.rank <= 8"
+    },
+    {
+      "calculate": "max(1, round(datum.tonnes / 2000))",
+      "as": "sacks"
+    },
+    {
+      "calculate": "datum.origin_country === 'Papua New Guinea' ? 'Nearest neighbour' : 'Other'",
+      "as": "highlight"
+    }
   ],
   "encoding": {
     "y": {
       "field": "origin_country",
       "type": "nominal",
-      "sort": {"field": "rank", "op": "min", "order": "ascending"},
-      "axis": {"title": null, "labelFontSize": 13, "labelFontWeight": 600, "ticks": false, "domain": false, "labelPadding": 8}
+      "sort": {
+        "field": "rank",
+        "op": "min",
+        "order": "ascending"
+      },
+      "axis": {
+        "title": null,
+        "labelFontSize": 13,
+        "labelFontWeight": 600,
+        "ticks": false,
+        "domain": false,
+        "labelPadding": 8
+      }
     }
   },
   "layer": [
     {
       "transform": [
-        {"calculate": "sequence(1, datum.sacks + 1)", "as": "sack_no"},
-        {"flatten": ["sack_no"]}
+        {
+          "calculate": "sequence(1, datum.sacks + 1)",
+          "as": "sack_no"
+        },
+        {
+          "flatten": [
+            "sack_no"
+          ]
+        }
       ],
       "params": [
         {
           "name": "Country_hover",
-          "select": {"type": "point", "fields": ["origin_country"], "on": "pointerover", "clear": "pointerout"}
+          "select": {
+            "type": "point",
+            "fields": [
+              "origin_country"
+            ],
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
         }
       ],
       "mark": {
@@ -49,51 +96,147 @@
         "x": {
           "field": "sack_no",
           "type": "quantitative",
-          "scale": {"domain": [0.4, 21]},
+          "scale": {
+            "domain": [
+              0.4,
+              21
+            ]
+          },
           "axis": null
         },
         "color": {
           "field": "highlight",
           "type": "nominal",
-          "scale": {"domain": ["Nearest neighbour", "Other"], "range": ["#A86B12", "#D9B07A"]},
+          "scale": {
+            "domain": [
+              "Nearest neighbour",
+              "Other"
+            ],
+            "range": [
+              "#7E561E",
+              "#CFA466"
+            ]
+          },
           "legend": null
         },
         "opacity": {
           "condition": [
-            {"param": "Country_hover", "empty": true, "value": 1}
+            {
+              "param": "Country_hover",
+              "empty": true,
+              "value": 1
+            }
           ],
           "value": 0.35
         },
         "tooltip": [
-          {"field": "origin_country", "title": "Country of origin"},
-          {"field": "tonnes", "type": "quantitative", "title": "Tonnes imported", "format": ",.0f"},
-          {"field": "sacks", "type": "quantitative", "title": "Sacks shown (one sack = 2,000 tonnes)"}
+          {
+            "field": "origin_country",
+            "title": "Country of origin"
+          },
+          {
+            "field": "tonnes",
+            "type": "quantitative",
+            "title": "Tonnes imported",
+            "format": ",.0f"
+          },
+          {
+            "field": "sacks",
+            "type": "quantitative",
+            "title": "Sacks shown (one sack = 2,000 tonnes)"
+          }
         ]
       }
     },
     {
-      "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 14, "fontSize": 12.5, "fontWeight": 600, "color": "#2B1D13"},
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 14,
+        "fontSize": 12.5,
+        "fontWeight": 600,
+        "color": "#2B1D13"
+      },
       "encoding": {
-        "x": {"field": "sacks", "type": "quantitative"},
-        "text": {"field": "tonnes", "type": "quantitative", "format": ",.0f"}
+        "x": {
+          "field": "sacks",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "tonnes",
+          "type": "quantitative",
+          "format": ",.0f"
+        }
       }
     },
     {
-      "transform": [{"filter": "datum.origin_country === 'Papua New Guinea'"}],
-      "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 66, "fontSize": 12.5, "fontWeight": 600, "color": "#A86B12", "text": "Our nearest neighbour"},
-      "encoding": {"x": {"field": "sacks", "type": "quantitative"}}
+      "transform": [
+        {
+          "filter": "datum.origin_country === 'Papua New Guinea'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 66,
+        "fontSize": 12.5,
+        "fontWeight": 600,
+        "color": "#7E561E",
+        "text": "Our nearest neighbour"
+      },
+      "encoding": {
+        "x": {
+          "field": "sacks",
+          "type": "quantitative"
+        }
+      }
     },
     {
-      "transform": [{"filter": "datum.origin_country === 'Brazil'"}],
-      "mark": {"type": "text", "align": "left", "baseline": "top", "dy": 16, "fontSize": 12.5, "fontWeight": 600, "color": "#2B1D13", "text": "Brazil alone: almost twice as much as Colombia"},
-      "encoding": {"x": {"datum": 0.6}}
+      "transform": [
+        {
+          "filter": "datum.origin_country === 'Brazil'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "dy": 16,
+        "fontSize": 12.5,
+        "fontWeight": 600,
+        "color": "#2B1D13",
+        "text": "Brazil alone: almost twice as much as Colombia"
+      },
+      "encoding": {
+        "x": {
+          "datum": 0.6
+        }
+      }
     }
   ],
   "config": {
     "background": null,
     "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
-    "title": {"fontSize": 14, "fontWeight": 600, "anchor": "start", "color": "#2B1D13", "subtitleFontSize": 12.5, "subtitleColor": "#6B5847", "subtitlePadding": 4},
-    "axis": {"labelFontSize": 12, "titleFontSize": 12, "titleFontWeight": 600, "labelColor": "#4A3B2E", "titleColor": "#2B1D13"},
-    "view": {"stroke": null}
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#2B1D13",
+      "subtitleFontSize": 12.5,
+      "subtitleColor": "#6B5847",
+      "subtitlePadding": 4
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "view": {
+      "stroke": null
+    }
   }
 }

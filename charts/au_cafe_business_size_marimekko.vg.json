@@ -1,8 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Cafés and restaurants by state and number of employees, June 2025",
-    "subtitle": "Column width shows each state's share of all businesses in Australia. Column height adds up to 100%"
+    "text": "Cafés and restaurants by number of employees, June 2025"
   },
   "width": "container",
   "height": 360,
@@ -202,11 +201,11 @@
               "200 or more"
             ],
             "range": [
-              "#E0A76B",
-              "#B9C4CD",
-              "#8A9CAA",
-              "#5C7080",
-              "#33434F"
+              "#EFE3D1",
+              "#D6C4AE",
+              "#B39C84",
+              "#86705D",
+              "#57453A"
             ]
           },
           "legend": {

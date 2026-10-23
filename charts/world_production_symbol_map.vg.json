@@ -1,8 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Where the world's coffee beans are grown",
-    "subtitle": "Circle size shows tonnes of coffee beans grown in the year chosen with the slider. Countries below 25,000 tonnes are not drawn"
+    "text": "Where coffee is grown, tonnes per country"
   },
   "width": "container",
   "height": 440,
@@ -67,7 +66,7 @@
       "mark": {
         "type": "circle",
         "opacity": 0.78,
-        "stroke": "#2F4F22",
+        "stroke": "#3F5A31",
         "strokeWidth": 0.8
       },
       "encoding": {
@@ -103,12 +102,12 @@
               3000000
             ],
             "format": ",.0f",
-            "symbolFillColor": "#4E7D3A",
-            "symbolStrokeColor": "#2F4F22"
+            "symbolFillColor": "#5F7D4C",
+            "symbolStrokeColor": "#3F5A31"
           }
         },
         "color": {
-          "value": "#4E7D3A"
+          "value": "#5F7D4C"
         },
         "order": {
           "field": "tonnes",

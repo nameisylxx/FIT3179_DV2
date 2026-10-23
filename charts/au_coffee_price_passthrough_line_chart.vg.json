@@ -1,14 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": [
-      "Does the world bean price reach the Australian cup?",
-      "October 2025 to August 2026, all three set to 100 in October 2025"
-    ],
-    "subtitle": [
-      "World bean price in blue. Australian consumer prices in terracotta.",
-      "Above 100 means dearer than October 2025, below 100 means cheaper."
-    ]
+    "text": "Price index, October 2025 = 100, monthly to August 2026"
   },
   "width": "container",
   "height": 340,
@@ -76,9 +69,9 @@
           "Australian meals out and take away"
         ],
         "range": [
-          "#2C5F8A",
-          "#9C4420",
-          "#D9902B"
+          "#4F6A82",
+          "#A9562F",
+          "#C9733F"
         ]
       },
       "legend": {
@@ -186,8 +179,8 @@
       "data": {
         "values": [
           {
-            "month": "2026-03",
-            "y": 107.0
+            "month": "2026-06",
+            "y": 72.6
           }
         ]
       },
@@ -203,8 +196,7 @@
         "baseline": "middle",
         "fontSize": 12.5,
         "fontWeight": 600,
-        "lineBreak": "|",
-        "text": "The world bean price fell 12%, but what Australians pay barely moved."
+        "text": "June low: 24% below October"
       },
       "encoding": {
         "y": {
@@ -212,7 +204,7 @@
           "type": "quantitative"
         },
         "color": {
-          "value": "#2C5F8A"
+          "value": "#4F6A82"
         }
       }
     }

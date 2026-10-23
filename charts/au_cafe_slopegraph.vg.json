@@ -1,8 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Cafés and restaurants per 10,000 people",
-    "subtitle": "June 2024 and June 2025. Each line is one state or territory"
+    "text": "Per 10,000 people, June 2024 and June 2025"
   },
   "width": "container",
   "height": 440,
@@ -87,8 +86,8 @@
               "Did not keep pace"
             ],
             "range": [
-              "#B5532F",
-              "#A79D91"
+              "#A9562F",
+              "#968B7E"
             ]
           },
           "legend": {
