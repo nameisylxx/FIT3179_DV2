@@ -1,0 +1,396 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Cafés and restaurants per 10,000 people",
+    "subtitle": "June 2024 and June 2025. Each line is one state or territory"
+  },
+  "width": "container",
+  "height": 440,
+  "data": {
+    "url": "data/processed/au_cafes_by_state_2024_2025.csv"
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(datum.per_10000_people)",
+      "as": "per_10k"
+    },
+    {
+      "calculate": "toNumber(datum.year)",
+      "as": "yr"
+    },
+    {
+      "calculate": "{'New South Wales':'NSW','Victoria':'VIC','Queensland':'QLD','South Australia':'SA','Western Australia':'WA','Tasmania':'TAS','Northern Territory':'NT','Australian Capital Territory':'ACT'}[datum.state_name]",
+      "as": "abbr"
+    },
+    {
+      "calculate": "datum.abbr === 'WA' || datum.abbr === 'SA' ? 'Grew faster than population' : 'Did not keep pace'",
+      "as": "trend"
+    },
+    {
+      "calculate": "datum.abbr + ' ' + format(datum.per_10k, '.1f')",
+      "as": "label"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "opacity": 0.95
+      },
+      "encoding": {
+        "x": {
+          "field": "yr",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              2023.45,
+              2025.55
+            ]
+          },
+          "axis": {
+            "values": [
+              2024,
+              2025
+            ],
+            "format": "d",
+            "title": null,
+            "grid": false,
+            "domain": false,
+            "ticks": false,
+            "labelFontSize": 13,
+            "labelFontWeight": 600,
+            "orient": "top"
+          }
+        },
+        "y": {
+          "field": "per_10k",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8.5,
+              26.5
+            ]
+          },
+          "axis": null
+        },
+        "detail": {
+          "field": "state_name",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "trend",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Grew faster than population",
+              "Did not keep pace"
+            ],
+            "range": [
+              "#B5532F",
+              "#A79D91"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "bottom",
+            "direction": "horizontal",
+            "labelLimit": 260,
+            "symbolType": "stroke",
+            "symbolStrokeWidth": 3
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state_name",
+            "title": "State"
+          },
+          {
+            "field": "year",
+            "title": "June"
+          },
+          {
+            "field": "per_10k",
+            "title": "Per 10,000 people",
+            "format": ".1f"
+          },
+          {
+            "field": "cafes_and_restaurants",
+            "title": "Businesses",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 70,
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "yr",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "per_10k",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "trend",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.yr === 2024 && datum.abbr !== 'ACT' && datum.abbr !== 'NSW'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -10,
+        "fontSize": 12.5,
+        "fontWeight": 500,
+        "dy": 0
+      },
+      "encoding": {
+        "x": {
+          "field": "yr",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "per_10k",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        },
+        "color": {
+          "value": "#2B1D13"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.yr === 2024 && datum.abbr === 'ACT'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -10,
+        "fontSize": 12.5,
+        "fontWeight": 500,
+        "dy": -7
+      },
+      "encoding": {
+        "x": {
+          "field": "yr",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "per_10k",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        },
+        "color": {
+          "value": "#2B1D13"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.yr === 2024 && datum.abbr === 'NSW'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -10,
+        "fontSize": 12.5,
+        "fontWeight": 500,
+        "dy": 7
+      },
+      "encoding": {
+        "x": {
+          "field": "yr",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "per_10k",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        },
+        "color": {
+          "value": "#2B1D13"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.yr === 2025 && datum.abbr !== 'ACT' && datum.abbr !== 'NSW'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 12.5,
+        "fontWeight": 500,
+        "dy": 0
+      },
+      "encoding": {
+        "x": {
+          "field": "yr",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "per_10k",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        },
+        "color": {
+          "value": "#2B1D13"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.yr === 2025 && datum.abbr === 'ACT'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 12.5,
+        "fontWeight": 500,
+        "dy": -7
+      },
+      "encoding": {
+        "x": {
+          "field": "yr",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "per_10k",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        },
+        "color": {
+          "value": "#2B1D13"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.yr === 2025 && datum.abbr === 'NSW'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 12.5,
+        "fontWeight": 500,
+        "dy": 7
+      },
+      "encoding": {
+        "x": {
+          "field": "yr",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "per_10k",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        },
+        "color": {
+          "value": "#2B1D13"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 2024.5,
+            "y": 20.3
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#2B1D13",
+        "text": [
+          "Only WA and SA added cafés and",
+          "restaurants faster than their",
+          "population grew."
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#2B1D13",
+      "subtitleFontSize": 12.5,
+      "subtitleColor": "#6B5847",
+      "subtitlePadding": 4
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

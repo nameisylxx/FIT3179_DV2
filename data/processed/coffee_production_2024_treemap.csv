@@ -1,0 +1,19 @@
+id,parent,name,region,production_tonnes
+0,,World,,
+1,0,South America,South America,
+2,0,Central America & Mexico,Central America & Mexico,
+3,0,Africa,Africa,
+4,0,Asia & Oceania,Asia & Oceania,
+5,1,Brazil,South America,3387724.0
+6,4,Vietnam,Asia & Oceania,2015289.0
+7,1,Colombia,South America,839846.7
+8,4,Indonesia,Asia & Oceania,807578.0
+9,3,Ethiopia,Africa,575696.2
+10,3,Uganda,Africa,402000.0
+11,4,India,Asia & Oceania,363000.0
+12,1,Peru,South America,358993.8
+13,2,Honduras,Central America & Mexico,324015.0
+14,1,Other,South America,87317.4
+15,2,Other,Central America & Mexico,563872.2
+16,3,Other,Africa,432515.2
+17,4,Other,Asia & Oceania,475525.4

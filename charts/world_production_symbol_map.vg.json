@@ -1,0 +1,313 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where the world's coffee beans are grown",
+    "subtitle": "Circle size shows tonnes of coffee beans grown in the year chosen with the slider. Countries below 25,000 tonnes are not drawn"
+  },
+  "width": "container",
+  "height": 440,
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2024,
+      "bind": {
+        "input": "range",
+        "min": 1990,
+        "max": 2024,
+        "step": 1,
+        "name": "Year: "
+      }
+    }
+  ],
+  "projection": {
+    "type": "equalEarth"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/processed/world_110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.id !== '010'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E9E6E1",
+        "stroke": "#FAF6F0",
+        "strokeWidth": 0.6
+      }
+    },
+    {
+      "data": {
+        "url": "data/processed/coffee_production_by_year_with_coordinates.csv"
+      },
+      "transform": [
+        {
+          "calculate": "toNumber(datum.production_tonnes)",
+          "as": "tonnes"
+        },
+        {
+          "calculate": "toNumber(datum.longitude)",
+          "as": "lon"
+        },
+        {
+          "calculate": "toNumber(datum.latitude)",
+          "as": "lat"
+        },
+        {
+          "filter": "toNumber(datum.year) == Year_selection && datum.tonnes >= 25000"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.78,
+        "stroke": "#2F4F22",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "tonnes",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              3500000
+            ],
+            "range": [
+              0,
+              2600
+            ]
+          },
+          "legend": {
+            "title": "Tonnes grown",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columnPadding": 24,
+            "values": [
+              100000,
+              1000000,
+              3000000
+            ],
+            "format": ",.0f",
+            "symbolFillColor": "#4E7D3A",
+            "symbolStrokeColor": "#2F4F22"
+          }
+        },
+        "color": {
+          "value": "#4E7D3A"
+        },
+        "order": {
+          "field": "tonnes",
+          "type": "quantitative",
+          "sort": "descending"
+        },
+        "tooltip": [
+          {
+            "field": "country_name",
+            "title": "Country"
+          },
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "tonnes",
+            "title": "Tonnes grown",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/processed/coffee_production_by_year_with_coordinates.csv"
+      },
+      "transform": [
+        {
+          "calculate": "toNumber(datum.production_tonnes)",
+          "as": "tonnes"
+        },
+        {
+          "calculate": "toNumber(datum.longitude)",
+          "as": "lon"
+        },
+        {
+          "calculate": "toNumber(datum.latitude)",
+          "as": "lat"
+        },
+        {
+          "filter": "toNumber(datum.year) == Year_selection && datum.tonnes >= 25000"
+        },
+        {
+          "window": [
+            {
+              "op": "rank",
+              "as": "place"
+            }
+          ],
+          "sort": [
+            {
+              "field": "tonnes",
+              "order": "descending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.place <= 5"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 14,
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#2B1D13"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "country_name"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/processed/coffee_production_by_year_with_coordinates.csv"
+      },
+      "transform": [
+        {
+          "calculate": "toNumber(datum.production_tonnes)",
+          "as": "tonnes"
+        },
+        {
+          "filter": "toNumber(datum.year) == Year_selection"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "sum",
+              "field": "tonnes",
+              "as": "world_total"
+            }
+          ]
+        },
+        {
+          "window": [
+            {
+              "op": "rank",
+              "as": "place"
+            }
+          ],
+          "sort": [
+            {
+              "field": "tonnes",
+              "order": "descending"
+            }
+          ]
+        },
+        {
+          "filter": "datum.place <= 5"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "sum",
+              "field": "tonnes",
+              "as": "top_five"
+            },
+            {
+              "op": "max",
+              "field": "world_total",
+              "as": "world_total"
+            }
+          ]
+        },
+        {
+          "calculate": "split('In ' + Year_selection + ', the five biggest growers; produced ' + format(datum.top_five / datum.world_total, '.0%') + ' of the; coffee beans in this map.', ';')",
+          "as": "note"
+        },
+        {
+          "calculate": "-150",
+          "as": "lon"
+        },
+        {
+          "calculate": "-34",
+          "as": "lat"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#2B1D13"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "note"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#2B1D13",
+      "subtitleFontSize": 12.5,
+      "subtitleColor": "#6B5847",
+      "subtitlePadding": 4
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

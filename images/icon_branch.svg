@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -20 114 102" width="114" height="102" role="img" aria-label="">
+  <defs><path id="l" d="M0 0 C 10 -16 36 -16 48 0 C 36 16 10 16 0 0 Z"/></defs>
+  <path d="M8 70 C 28 56 50 40 80 14" fill="none" stroke="#5B4630" stroke-width="3.4" stroke-linecap="round"/>
+  <g stroke="#2B1D13" stroke-width="1.8" stroke-linejoin="round">
+    <use href="#l" transform="translate(30 56) rotate(-52)" fill="#6E9B52"/>
+    <use href="#l" transform="translate(46 44) rotate(40)" fill="#4E7D3A"/>
+    <use href="#l" transform="translate(64 28) rotate(-46)" fill="#6E9B52"/>
+  </g>
+  <g stroke="#2B1D13" stroke-width="1.6">
+    <path d="M42 50 C 44 58 44 62 42 66" fill="none" stroke-linecap="round"/>
+    <circle cx="42" cy="69" r="6.5" fill="#B83A2E"/>
+    <path d="M58 34 C 62 42 64 46 66 49" fill="none" stroke-linecap="round"/>
+    <circle cx="67" cy="53" r="6.5" fill="#C94A38"/>
+  </g>
+</svg>

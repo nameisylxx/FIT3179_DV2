@@ -1,0 +1,231 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": [
+      "Robusta's share of the",
+      "world's coffee production"
+    ],
+    "subtitle": [
+      "Percent of all coffee beans grown, by coffee year",
+      "(October to September). The last year is an ICO estimate"
+    ]
+  },
+  "width": "container",
+  "height": 330,
+  "data": {
+    "url": "data/processed/coffee_world_supply_demand_balance.csv"
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(datum.robusta_share_of_production_pct)",
+      "as": "robusta_share"
+    }
+  ],
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.coffee_year !== '2025/26'"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "color": "#B5446E"
+      },
+      "encoding": {
+        "x": {
+          "field": "coffee_year",
+          "type": "ordinal",
+          "axis": {
+            "title": null,
+            "labelAngle": 0,
+            "labelFontSize": 12,
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "y": {
+          "field": "robusta_share",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              36,
+              46
+            ]
+          },
+          "axis": {
+            "title": "Percent of world production",
+            "values": [
+              36,
+              38,
+              40,
+              42,
+              44,
+              46
+            ],
+            "labelExpr": "datum.value + '%'",
+            "grid": true,
+            "gridColor": "#EDE6DC",
+            "domain": false,
+            "ticks": false
+          }
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.coffee_year === '2024/25' || datum.coffee_year === '2025/26'"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "strokeDash": [
+          6,
+          5
+        ],
+        "color": "#B5446E"
+      },
+      "encoding": {
+        "x": {
+          "field": "coffee_year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "robusta_share",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 90,
+        "color": "#B5446E",
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "coffee_year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "robusta_share",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "coffee_year",
+            "title": "Coffee year"
+          },
+          {
+            "field": "robusta_share",
+            "title": "Robusta share of production (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "robusta_production",
+            "title": "Robusta (million bags)",
+            "format": ".1f"
+          },
+          {
+            "field": "total_production",
+            "title": "All coffee (million bags)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -14,
+        "fontSize": 12.5,
+        "fontWeight": 600,
+        "color": "#2B1D13"
+      },
+      "encoding": {
+        "x": {
+          "field": "coffee_year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "robusta_share",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "robusta_share",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "coffee_year": "2022/23",
+            "y": 37.9
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#2B1D13",
+        "text": [
+          "Robusta is 43.1% of this year's crop.",
+          "The two years before averaged 41.7%.",
+          "Arabica also fell below 60% of green bean exports",
+          "in the first 11 months of a coffee year,",
+          "the first time on record."
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "coffee_year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#2B1D13",
+      "subtitleFontSize": 12.5,
+      "subtitleColor": "#6B5847",
+      "subtitlePadding": 4
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

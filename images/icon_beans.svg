@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 70" width="90" height="70" role="img" aria-label="">
+  <defs>
+    <g id="b">
+      <ellipse rx="19" ry="12" fill="#6B3F22" stroke="#2B1D13" stroke-width="2"/>
+      <path d="M-16 1.5 C-7 -7 7 7 16 -1.5" fill="none" stroke="#2B1D13" stroke-width="2" stroke-linecap="round"/>
+      <path d="M-12 -5 C-7 -9 0 -10 5 -8" fill="none" stroke="#A56E42" stroke-width="1.8" stroke-linecap="round"/>
+    </g>
+  </defs>
+  <use href="#b" transform="translate(30 44) rotate(-20)"/>
+  <use href="#b" transform="translate(62 50) rotate(15)"/>
+  <use href="#b" transform="translate(46 22) rotate(-6)"/>
+</svg>

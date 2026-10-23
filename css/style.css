@@ -1,0 +1,457 @@
+/* From farm to café - page styles
+   Type scale: body 17px, small 15px, chart text 12px or larger.
+   Layout: one 12-column grid, 24px gaps, every card aligned to it. */
+
+:root {
+  --ink: #2b1d13;
+  --ink-soft: #4a3b2e;
+  --muted: #6b5847;
+  --paper: #faf6f0;
+  --card: #ffffff;
+  --line: #e7ded3;
+  --accent: #9c4420;
+  --accent-soft: #f6e3d5;
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9375rem;
+  --fs-tag: 0.8125rem;
+  --gap: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 24px 72px;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  align-items: end;
+  padding: 40px 0 36px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.hero-text {
+  grid-column: span 7;
+  padding-bottom: 8px;
+}
+
+.hero-art {
+  grid-column: span 5;
+  width: 100%;
+  max-width: 460px;
+  justify-self: end;
+  align-self: center;
+}
+
+.kicker {
+  margin: 0 0 12px;
+  font-size: var(--fs-tag);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.12;
+  margin: 0;
+  color: var(--ink);
+}
+
+h1 {
+  font-size: clamp(2.8rem, 6vw, 4.6rem);
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 16px 0 0;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.intro {
+  margin: 20px 0 0;
+  max-width: 62ch;
+  color: var(--ink-soft);
+}
+
+.hero-stat {
+  grid-column: span 12;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 28px;
+  padding: 20px 28px;
+  background: var(--accent-soft);
+  border-left: 5px solid var(--accent);
+  border-radius: 6px;
+}
+
+.hero-stat .big {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 3.6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.hero-stat-art {
+  margin-left: auto;
+  height: 54px;
+  width: auto;
+}
+
+.hero-stat p {
+  margin: 0;
+  max-width: 48ch;
+  font-size: 1.0625rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  padding-top: 56px;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 20px;
+  align-items: baseline;
+  margin-bottom: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.section-icon {
+  align-self: end;
+  height: 56px;
+  width: auto;
+  margin-bottom: -2px;
+}
+
+.section-no {
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.section-head h2 {
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+}
+
+.standfirst {
+  margin: 12px 0 28px;
+  max-width: 62ch;
+  color: var(--muted);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gap);
+  margin-bottom: var(--gap);
+}
+
+.span-12 { grid-column: span 12; }
+.span-7 { grid-column: span 7; }
+.span-6 { grid-column: span 6; }
+.span-5 { grid-column: span 5; }
+
+/* ---------- Figure cards ---------- */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0;
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.fig-no {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font-size: var(--fs-tag);
+  font-weight: 700;
+}
+
+.chart-name {
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.tag {
+  margin-left: auto;
+  padding: 3px 10px;
+  border: 1px solid var(--muted);
+  border-radius: 4px;
+  font-size: var(--fs-tag);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.insight {
+  font-size: 1.4rem;
+  max-width: 24ch;
+}
+
+.card.span-12 .insight,
+.card.span-7 .insight {
+  max-width: 34ch;
+}
+
+.lede {
+  margin: 10px 0 16px;
+  max-width: 56ch;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.chart {
+  width: 100%;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.how,
+.links {
+  margin: 12px 0 0;
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+.how strong {
+  color: var(--ink-soft);
+}
+
+.links {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.links a {
+  white-space: nowrap;
+}
+
+/* ---------- Takeaways card ---------- */
+
+.takeaways {
+  justify-content: center;
+  padding: 40px;
+  background: var(--ink);
+  color: #f6efe6;
+  border-color: var(--ink);
+}
+
+.takeaways {
+  position: relative;
+  overflow: hidden;
+}
+
+.takeaways-art {
+  position: absolute;
+  right: 28px;
+  bottom: 24px;
+  width: 120px;
+  opacity: 0.9;
+}
+
+.takeaways h3 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 24px;
+}
+
+.takeaways ol {
+  margin: 0;
+  padding-left: 1.3em;
+}
+
+.takeaways li {
+  margin-bottom: 20px;
+  max-width: 36ch;
+  font-size: 1.2rem;
+  line-height: 1.45;
+}
+
+.takeaways li::marker {
+  color: #f2c9aa;
+  font-weight: 700;
+}
+
+/* ---------- About the data ---------- */
+
+.about {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 2px solid var(--ink);
+}
+
+.about h2 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.about h3 {
+  margin: 32px 0 12px;
+  font-size: 1.3rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-small);
+}
+
+th,
+td {
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+
+th {
+  background: #f3ece2;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.notes {
+  padding-left: 1.2em;
+  max-width: 78ch;
+  color: var(--ink-soft);
+}
+
+.notes li {
+  margin-bottom: 8px;
+}
+
+footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+footer p {
+  margin: 0 0 6px;
+  max-width: 80ch;
+}
+
+/* Vega tooltip */
+#vg-tooltip-element {
+  font-family: var(--font-body) !important;
+  font-size: 13px !important;
+}
+
+/* ---------- Smaller screens ---------- */
+
+@media (max-width: 960px) {
+  .hero-text,
+  .hero-art,
+  .hero-stat,
+  .span-7,
+  .span-6,
+  .span-5 {
+    grid-column: span 12;
+  }
+
+  .hero-art {
+    justify-self: start;
+    margin-top: 16px;
+    max-width: 320px;
+  }
+}
+
+/* Controls that Vega-Lite adds for sliders (params with bind) */
+.vega-bindings {
+  margin-top: 10px;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+.vega-bindings label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.vega-bindings input[type="range"] {
+  flex: 1 1 auto;
+  max-width: 420px;
+  accent-color: var(--accent);
+}

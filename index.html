@@ -1,299 +1,288 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>From farm to cafe | Coffee in Australia</title>
-  <!-- Import Vega & Vega-Lite -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
-
-  <!-- Import pure.css -->
-  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
-    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Google font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>From farm to café: the journey behind an Australian coffee</title>
+  <meta name="description" content="Twelve charts and maps follow Australian coffee from the farms that grow it to the cafés that serve it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.33.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.23.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.29.0"></script>
 </head>
-
 <body>
-
   <div class="page">
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-2-3">
-        <h1>From farm to cafe</h1>
-        <p class="subtitle">Australia grows very little coffee, but about half of us drink it every week.
-          This page follows coffee from our cafes back to the farms that grow it, and on to the market that sets
-          its price.</p>
+    <header class="hero">
+      <div class="hero-text">
+        <p class="kicker">Coffee in Australia</p>
+        <h1>From farm to café</h1>
+        <p class="subtitle">The global journey behind an Australian ritual</p>
+        <p class="intro">Australia grows very little coffee, so most of what we drink is imported. This page follows coffee from our cafés back to the farms that grow it, and on to the markets that set its price.</p>
       </div>
-      <div class="pure-u-1-3">
-        <img src="images/coffee_cup.png" class="hero-image" alt="">
+      <img class="hero-art" src="images/hero_cup_branch.svg" alt="" aria-hidden="true" />
+      <div class="hero-stat">
+        <span class="big">51%</span>
+        <p>of Australians drink coffee in an average week. Source: Roy Morgan Single Source survey, 12 months to September 2025.</p>
+        <img class="hero-stat-art" src="images/icon_beans.svg" alt="" aria-hidden="true" />
       </div>
-    </div>
-    <!-- end pure grid group -->
+    </header>
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <h2 class="section-title">1. Coffee in Australia</h2>
-        <p class="lead">Australia had 56,304 cafes and restaurants in June 2025, 616 more than a year before. But the
-          population grew faster than the shops did, so there are now slightly fewer cafes per person than there
-          were in 2024. Victoria is still the most cafe-dense state, with 25 for every 10,000 people &mdash; more
-          than two and a half times the Northern Territory.</p>
+    <!-- ===================== 01 ===================== -->
+    <section class="section" id="cafes">
+      <div class="section-head">
+        <span class="section-no">01</span>
+        <h2>An everyday ritual</h2>
+        <img class="section-icon" src="images/icon_cup.svg" alt="" aria-hidden="true" />
       </div>
-    </div>
-    <!-- end pure grid group -->
+      <p class="standfirst">Cafés and restaurants across Australia.</p>
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-2">
-        <div id="vis1" class="vis-container"></div>
-      </div>
-      <div class="pure-u-1-2">
-        <div id="vis2" class="vis-container"></div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
+      <div class="row">
+        <figure class="card span-6" id="fig-1">
+          <div class="card-head"><span class="fig-no">1</span><span class="chart-name">A place for coffee</span><span class="tag">Choropleth map</span></div>
+          <h3 class="insight">Victoria has the most cafés and restaurants per person.</h3>
+          <p class="lede">Victoria has 25 per 10,000 people, the most of any state. New South Wales has 23.</p>
+          <div class="chart" id="chart_cafe_density" role="img" aria-label="Map of Australian states shaded by cafés and restaurants per 10,000 people. Victoria is highest."></div>
+          <p class="how"><strong>How to read:</strong> a darker shade means more cafés and restaurants for every 10,000 people.</p>
+          <p class="links">Source: Australian Bureau of Statistics · <a href="charts/au_cafe_choropleth.vg.json">Chart code (JSON)</a> · <a href="data/processed/au_cafes_restaurants_by_state.csv">Data (CSV)</a></p>
+        </figure>
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-3">
-        <div class="description description-left">
-          <h2>Small businesses</h2>
-          <p>Nine in ten cafes and restaurants in Australia have fewer than 20 employees. In Victoria one in four
-            has no employees at all, which means the owner does the work.</p>
+        <figure class="card span-6" id="fig-2">
+          <div class="card-head"><span class="fig-no">2</span><span class="chart-name">A changing café landscape</span><span class="tag">Slopegraph</span></div>
+          <h3 class="insight">Cafés and restaurants lagged population growth in most states.</h3>
+          <p class="lede">Between June 2024 and June 2025, only Western Australia and South Australia added cafés and restaurants faster than their population grew.</p>
+          <div class="chart" id="chart_cafe_change" role="img" aria-label="Slopegraph of cafés and restaurants per 10,000 people in each state, June 2024 and June 2025."></div>
+          <p class="how"><strong>How to read:</strong> each line joins June 2024 to June 2025. Orange lines went up. Grey lines went down.</p>
+          <p class="links">Source: Australian Bureau of Statistics · <a href="charts/au_cafe_slopegraph.vg.json">Chart code (JSON)</a> · <a href="data/processed/au_cafes_by_state_2024_2025.csv">Data (CSV)</a></p>
+        </figure>
+      </div>
+
+      <div class="row">
+        <figure class="card span-12" id="fig-3">
+          <div class="card-head"><span class="fig-no">3</span><span class="chart-name">The business behind the counter</span><span class="tag">Stacked bar chart</span></div>
+          <h3 class="insight">Nine in ten cafés and restaurants have fewer than 20 staff.</h3>
+          <p class="lede">Many are run by their owners. In Victoria, 1 in 4 has no employees at all.</p>
+          <div class="chart" id="chart_cafe_size" role="img" aria-label="Stacked bars showing the share of cafés and restaurants by number of employees in each state."></div>
+          <p class="how"><strong>How to read:</strong> each bar is one state. Its segments show what share of businesses have each number of employees.</p>
+          <p class="links">Source: Australian Bureau of Statistics · <a href="charts/au_cafe_business_size_stacked_bar.vg.json">Chart code (JSON)</a> · <a href="data/processed/au_cafes_restaurants_by_state.csv">Data (CSV)</a></p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== 02 ===================== -->
+    <section class="section" id="trade">
+      <div class="section-head">
+        <span class="section-no">02</span>
+        <h2>An Australian cup, a global connection</h2>
+        <img class="section-icon" src="images/icon_sack.svg" alt="" aria-hidden="true" />
+      </div>
+      <p class="standfirst">Where the coffee beans we import come from, and how much those farms harvest.</p>
+
+      <div class="row">
+        <figure class="card span-12" id="fig-4">
+          <div class="card-head"><span class="fig-no">4</span><span class="chart-name">Where our coffee comes from</span><span class="tag">Flow map</span></div>
+          <h3 class="insight">Brazil, Colombia and Vietnam send us more than half of our imports.</h3>
+          <p class="lede">Coffee travels to Australia from Latin America, Africa and Asia. Brazil alone supplies 27% of what we import from these countries.</p>
+          <div class="chart" id="chart_import_flows" role="img" aria-label="World map centred on Australia with curved lines to 22 coffee-growing countries. Brazil is the thickest line."></div>
+          <p class="how"><strong>How to read:</strong> thicker lines and bigger circles mean more tonnes imported. Lines end at the middle of Australia, not at a port.</p>
+          <p class="links">Source: UN Comtrade (United Nations trade database) · <a href="charts/au_coffee_import_flow_map.vg.json">Chart code (JSON)</a> · <a href="data/processed/au_coffee_imports_by_origin.csv">Data (CSV)</a></p>
+        </figure>
+      </div>
+
+      <div class="row">
+        <figure class="card span-6" id="fig-5">
+          <div class="card-head"><span class="fig-no">5</span><span class="chart-name">Our selected suppliers</span><span class="tag">Ranked bar chart</span></div>
+          <h3 class="insight">Our closest neighbour, Papua New Guinea, ranks fourth.</h3>
+          <p class="lede">The top eight suppliers among the coffee-growing countries.</p>
+          <div class="chart" id="chart_suppliers" role="img" aria-label="Bar chart of the eight biggest coffee-growing suppliers to Australia. Brazil is first."></div>
+          <p class="how"><strong>How to read:</strong> a longer bar means more tonnes of coffee beans imported in 2025.</p>
+          <p class="links">Source: UN Comtrade (United Nations trade database) · <a href="charts/au_coffee_supplier_ranked_bar.vg.json">Chart code (JSON)</a> · <a href="data/processed/au_coffee_imports_by_origin.csv">Data (CSV)</a></p>
+        </figure>
+
+        <figure class="card span-6" id="fig-6">
+          <div class="card-head"><span class="fig-no">6</span><span class="chart-name">More from each hectare</span><span class="tag">Heatmap</span></div>
+          <h3 class="insight">Vietnam gets over four times more coffee per hectare than Ethiopia.</h3>
+          <p class="lede">Yield is how much coffee a farm grows on each hectare of land.</p>
+          <div class="chart" id="chart_yield" role="img" aria-label="Heatmap of coffee yield in tonnes per hectare for ten countries from 2015 to 2024. Vietnam is the darkest row."></div>
+          <p class="how"><strong>How to read:</strong> each square is one country in one year. A darker purple means more coffee per hectare.</p>
+          <p class="links">Source: Food and Agriculture Organization of the United Nations · <a href="charts/world_yield_heatmap.vg.json">Chart code (JSON)</a> · <a href="data/processed/coffee_yield_by_country.csv">Data (CSV)</a></p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== 03 ===================== -->
+    <section class="section" id="source">
+      <div class="section-head">
+        <span class="section-no">03</span>
+        <h2>At the source</h2>
+        <img class="section-icon" src="images/icon_branch.svg" alt="" aria-hidden="true" />
+      </div>
+      <p class="standfirst">The farms and countries that grow the world's coffee.</p>
+
+      <div class="row">
+        <figure class="card span-12" id="fig-7">
+          <div class="card-head"><span class="fig-no">7</span><span class="chart-name">Where coffee grows</span><span class="tag">Proportional symbol map</span></div>
+          <h3 class="insight">Coffee grows in a belt around the middle of the world.</h3>
+          <p class="lede">In 2024, five countries grew 7 in 10 of the world's coffee beans. Move the slider to see other years.</p>
+          <div class="chart" id="chart_production_map" role="img" aria-label="World map with circles sized by coffee production. Brazil and Vietnam have the largest circles."></div>
+          <p class="how"><strong>How to read:</strong> a bigger circle means more tonnes of coffee beans grown. Drag the year slider under the map to go back to 1990.</p>
+          <p class="links">Source: Food and Agriculture Organization of the United Nations · <a href="charts/world_production_symbol_map.vg.json">Chart code (JSON)</a> · <a href="data/processed/coffee_production_latest_with_coordinates.csv">Data (CSV)</a></p>
+        </figure>
+      </div>
+
+      <div class="row">
+        <figure class="card span-6" id="fig-8">
+          <div class="card-head"><span class="fig-no">8</span><span class="chart-name">Changing places</span><span class="tag">Bump chart</span></div>
+          <h3 class="insight">Vietnam went from 17th to 2nd in ten years.</h3>
+          <p class="lede">Mexico, once third, has slipped to 11th.</p>
+          <div class="chart" id="chart_bump" role="img" aria-label="Bump chart of the rank of six coffee-growing countries in 1990, 2000, 2010, 2020 and 2024. Vietnam rises from 17th to 2nd."></div>
+          <p class="how"><strong>How to read:</strong> each line follows one country. The number in the circle is its rank, with 1 at the top.</p>
+          <p class="links">Source: Food and Agriculture Organization of the United Nations · <a href="charts/world_production_bump_chart.vg.json">Chart code (JSON)</a> · <a href="data/processed/coffee_production_by_country.csv">Data (CSV)</a></p>
+        </figure>
+
+        <figure class="card span-6" id="fig-9">
+          <div class="card-head"><span class="fig-no">9</span><span class="chart-name">The world's coffee harvest</span><span class="tag">Treemap</span></div>
+          <h3 class="insight">Brazil and Vietnam grow half of the world's coffee.</h3>
+          <p class="lede">South America grows the most. Asia is second.</p>
+          <div class="chart" id="chart_treemap" role="img" aria-label="Treemap of coffee production by region and country in 2024. Brazil is the largest tile, then Vietnam."></div>
+          <p class="how"><strong>How to read:</strong> a bigger tile means more coffee grown. Tiles are grouped by region.</p>
+          <p class="links">Source: Food and Agriculture Organization of the United Nations · <a href="charts/world_production_treemap.vg.json">Chart code (JSON)</a> · <a href="data/processed/coffee_production_2024_treemap.csv">Data (CSV)</a></p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== 04 ===================== -->
+    <section class="section" id="markets">
+      <div class="section-head">
+        <span class="section-no">04</span>
+        <h2>Beans, markets and the price of a cup</h2>
+        <img class="section-icon" src="images/icon_beans.svg" alt="" aria-hidden="true" />
+      </div>
+      <p class="standfirst">Global market context. These are wholesale prices for raw beans, not café menu prices.</p>
+
+      <div class="row">
+        <figure class="card span-6" id="fig-10">
+          <div class="card-head"><span class="fig-no">10</span><span class="chart-name">The price of the bean</span><span class="tag">Line chart</span></div>
+          <h3 class="insight">Wholesale prices fell through the first half of 2026.</h3>
+          <p class="lede">In this 12-month window prices were highest in November 2025 and lowest in June 2026, then bounced back. Arabica beans cost about twice as much as Robusta.</p>
+          <div class="chart" id="chart_prices" role="img" aria-label="Line chart of monthly wholesale prices for three Arabica types and Robusta from October 2025 to September 2026."></div>
+          <p class="how"><strong>How to read:</strong> each line is one type of bean. Higher on the chart means a higher price. Click a name in the legend to highlight that bean type. Shift-click a highlighted name to switch it off.</p>
+          <p class="links">Source: International Coffee Organization · <a href="charts/coffee_price_line_chart.vg.json">Chart code (JSON)</a> · <a href="data/processed/coffee_price_by_variety_monthly.csv">Data (CSV)</a></p>
+        </figure>
+
+        <figure class="card span-6" id="fig-11">
+          <div class="card-head"><span class="fig-no">11</span><span class="chart-name">Arabica or Robusta?</span><span class="tag">Line chart</span></div>
+          <h3 class="insight">Robusta is a bigger part of the world's coffee crop.</h3>
+          <p class="lede">Robusta is 43.1% of production in 2025/26. The two years before averaged 41.7%. Arabica also fell below 60% of green bean exports for the first 11 months of a coffee year, the first time on record.</p>
+          <div class="chart" id="chart_species" role="img" aria-label="Line chart of Robusta's share of world coffee production for six coffee years, from 40.9% in 2020/21 to 43.1% in 2025/26."></div>
+          <p class="how"><strong>How to read:</strong> each dot is one coffee year. Higher means Robusta is a bigger share of the beans grown. The dashed part is an estimate.</p>
+          <p class="links">Source: International Coffee Organization · <a href="charts/coffee_robusta_share_line_chart.vg.json">Chart code (JSON)</a> · <a href="data/processed/coffee_world_supply_demand_balance.csv">Data (CSV)</a></p>
+        </figure>
+      </div>
+
+      <div class="row">
+        <figure class="card span-6" id="fig-12">
+          <div class="card-head"><span class="fig-no">12</span><span class="chart-name">Harvest meets demand</span><span class="tag">Waterfall chart</span></div>
+          <h3 class="insight">In 2024/25 the world drank more coffee than it grew.</h3>
+          <p class="lede">A shortfall of 6.3 million bags, the fourth in a row. The ICO expects a 3.0 million bag surplus in 2025/26.</p>
+          <div class="chart" id="chart_balance" role="img" aria-label="Waterfall chart for coffee year 2024/25: 175.9 million bags grown, 182.2 million drunk, a shortfall of 6.3 million."></div>
+          <p class="how"><strong>How to read:</strong> the green bar is coffee grown. The grey bar takes away the coffee drunk and goes below the line. The teal bar is the shortfall.</p>
+          <p class="links">Source: International Coffee Organization · <a href="charts/coffee_supply_demand_waterfall.vg.json">Chart code (JSON)</a> · <a href="data/processed/coffee_world_supply_demand_balance.csv">Data (CSV)</a></p>
+        </figure>
+
+        <div class="card takeaways span-6">
+          <img class="takeaways-art" src="images/icon_beans.svg" alt="" aria-hidden="true" />
+          <h3>The journey in one minute</h3>
+          <ol>
+            <li>Victoria has the most cafés and restaurants per person.</li>
+            <li>Brazil, Colombia and Vietnam send us the most beans.</li>
+            <li>In 2024, five countries grew 7 in 10 of the world's beans.</li>
+            <li>Vietnam rose from 17th to 2nd in ten years.</li>
+            <li>Wholesale prices fell through the first half of 2026.</li>
+          </ol>
         </div>
       </div>
-      <div class="pure-u-2-3">
-        <div id="vis3" class="vis-container"></div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
+    </section>
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <h2 class="section-title">2. Where our coffee comes from</h2>
-        <p class="lead">Those beans travel a long way. In 2025 Australia imported 112 million kilograms of coffee
-          from 22 coffee-growing countries, which is about four kilograms of beans for every person in the
-          country. Five of those countries supply seven of every ten kilograms.</p>
-      </div>
-    </div>
-    <!-- end pure grid group -->
+    <!-- ===================== About ===================== -->
+    <section class="about" id="about">
+      <h2>About the data</h2>
+      <p class="standfirst">Who this page is for, where every number comes from, and what to keep in mind.</p>
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <div id="vis4" class="vis-container"></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Charts</th><th>What it shows</th><th>Source</th><th>Period</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1, 2, 3</td>
+              <td>Cafés and restaurants by state and number of employees</td>
+              <td><a href="https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits/jul2021-jun2025">Australian Bureau of Statistics, Counts of Australian Businesses (data cube 2)</a>, released 16 December 2025</td>
+              <td>June 2024 and June 2025</td>
+            </tr>
+            <tr>
+              <td>1, 2</td>
+              <td>State populations, used to count cafés per person</td>
+              <td>Australian Bureau of Statistics, National, state and territory population: <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/jun-2025">June 2025</a> and <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/jun-2024">June 2024</a></td>
+              <td>June 2024 and June 2025</td>
+            </tr>
+            <tr>
+              <td>4, 5</td>
+              <td>Coffee imported into Australia, by country of origin</td>
+              <td><a href="https://comtradeplus.un.org/">UN Comtrade</a>, Australia's own import records, customs code 0901 (coffee)</td>
+              <td>2025</td>
+            </tr>
+            <tr>
+              <td>6, 7, 8, 9</td>
+              <td>Coffee grown and coffee yield per hectare, by country</td>
+              <td>Food and Agriculture Organization of the United Nations, through Our World in Data: <a href="https://ourworldindata.org/grapher/coffee-bean-production">production</a> and <a href="https://ourworldindata.org/grapher/coffee-yields">yield</a></td>
+              <td>1961 to 2024</td>
+            </tr>
+            <tr>
+              <td>10, 11, 12</td>
+              <td>Wholesale prices, Robusta share of production, world supply and demand</td>
+              <td><a href="https://www.ico.org/documents/cy2025-26/cmr-0926-e.pdf">International Coffee Organization, Coffee Market Report, September 2026</a> (Tables 1 and 3, and the export text on page 5)</td>
+              <td>October 2025 to September 2026 (prices); coffee years 2020/21 to 2025/26 (supply and demand)</td>
+            </tr>
+            <tr>
+              <td>Introduction</td>
+              <td>Share of Australians who drink coffee in an average week</td>
+              <td><a href="https://www.roymorgan.com/findings/10068-thinknewsbrands-total-news-readership-media-release-september-2025">Roy Morgan Research</a>, quoted in its news readership release of 24 November 2025</td>
+              <td>12 months to September 2025</td>
+            </tr>
+            <tr>
+              <td>All maps</td>
+              <td>Map shapes and country locations</td>
+              <td><a href="https://github.com/topojson/world-atlas">World Atlas</a> (Natural Earth), <a href="https://github.com/rowanhogan/australian-states">Australian state boundaries by Rowan Hogan</a> (simplified), <a href="https://github.com/dr5hn/countries-states-cities-database">country coordinates by dr5hn</a></td>
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-    <!-- end pure grid group -->
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-2">
-        <div id="vis5" class="vis-container"></div>
-      </div>
-      <div class="pure-u-1-2">
-        <div class="description description-right">
-          <h2>Our closest neighbour</h2>
-          <p>Brazil supplies more than a quarter of the coffee we import from coffee-growing countries.
-            Papua New Guinea, our nearest neighbour, is the fourth-biggest source.</p>
-          <p>Lines on the map above end at the middle of Australia, not at the port where the coffee arrived.</p>
-        </div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
+      <h3>Good to know</h3>
+      <ul class="notes">
+        <li><strong>Cafés and restaurants:</strong> the Australian Bureau of Statistics counts them together in one industry class (4511), so the numbers include restaurants. They count businesses, not shop fronts.</li>
+        <li><strong>Imports:</strong> the 22 countries are coffee-growing countries chosen from the Food and Agriculture Organization list. The customs code 0901 covers green and roasted coffee. Countries that mainly trade coffee, such as Switzerland, are left out. On the flow map every line ends at the middle of Australia, not at the port where the coffee arrived.</li>
+        <li><strong>Left out:</strong> the Central African Republic and Guinea are not shown in the production charts. Their reported coffee output jumps 5 to 30 times after 2015, which looks like an estimate, not a harvest.</li>
+        <li><strong>Coffee years:</strong> the International Coffee Organization counts a coffee year from 1 October. Its figures are not the same as the calendar-year figures from the Food and Agriculture Organization. The Organization revises past years: the 2024/25 supply and demand figures here are from its September 2026 report and differ from its June 2026 report. The 2025/26 figures are estimates.</li>
+        <li><strong>Prices:</strong> charts 10 to 12 describe the world market. They are not the price of a cup at an Australian café.</li>
+        <li><strong>The 51% figure</strong> comes from a Roy Morgan survey of Australians aged 14 and over. It appears in a release about news readership, where coffee is used as a comparison. No other free, recent survey on coffee drinking in Australia was found.</li>
+      </ul>
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <h2 class="section-title">3. At the source</h2>
-        <p class="lead">Go one step further back and the picture narrows again. The world grew 10.6 million tonnes
-          of coffee in 2024, across the 76 countries the FAO keeps records for. Australia is not one of them.
-          Brazil, Vietnam,
-          Colombia, Indonesia and Ethiopia between them grow close to three quarters of it, so a bad season in any
-          one of them is eventually felt in every cafe in section 1.</p>
-      </div>
-    </div>
-    <!-- end pure grid group -->
+      <footer>
+        <p><strong>Created by Liuxiaoxi Yang</strong>, October 2026. FIT3179 Data Visualisation 2, Monash University.</p>
+        <p>Charts are built with Vega-Lite and Vega. Each chart's code is linked under the chart.</p>
+        <p>AI acknowledgement: AI tools (ChatGPT and Claude) were used to explore the page layout, help write the code, draw the decorative illustrations, and check the wording of the text. All data come from the sources above.</p>
+      </footer>
+    </section>
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <div id="vis6" class="vis-container"></div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
+  </div>
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-2-3">
-        <div id="vis7" class="vis-container"></div>
-      </div>
-      <div class="pure-u-1-3">
-        <div class="description description-right">
-          <h2>Yield</h2>
-          <p>Yield is how much coffee a farm grows on each hectare of land. Vietnam gets about three tonnes per
-            hectare, over four times as much as Ethiopia.</p>
-        </div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
-
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-2">
-        <div id="vis9" class="vis-container"></div>
-      </div>
-      <div class="pure-u-1-2">
-        <div class="description description-right">
-          <h2>Changing places</h2>
-          <p>Vietnam grew almost no coffee in 1990. It was 17th in the world. By 2000 it was second, and it has
-            stayed there ever since. Today it grows about 22 times as much coffee as it did in 1990.</p>
-          <p>Mexico went the other way. It was the third-biggest grower in 1990 and has slipped to 11th.</p>
-        </div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
-
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <h2 class="section-title">4. The price of the bean</h2>
-        <p class="lead">Between the farm and the cafe sits a commodity market. Wholesale prices fell about a fifth
-          from their November 2025 high to September 2026, and Arabica beans kept costing roughly twice what
-          Robusta did all the way through.</p>
-      </div>
-    </div>
-    <!-- end pure grid group -->
-
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <div id="vis8" class="vis-container"></div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
-
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <p class="closing">So the coffee in an Australian cup travels a long way and passes through a price nobody
-          here sets. The businesses at the end of that chain are small ones: nine in ten have fewer than twenty
-          staff, and a quarter of Victoria's have no staff at all. When the wholesale price moves, they are the
-          ones who decide whether to wear it or pass it on.</p>
-      </div>
-    </div>
-    <!-- end pure grid group -->
-
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-1 small-font">
-        <h2 class="section-title">About the data</h2>
-      </div>
-      <div class="pure-u-1-2">
-        <div class="description description-left small-font">
-        <h3>Where the numbers come from</h3>
-        <ul>
-          <li><strong>Cafes and restaurants, by state and by number of employees:</strong>
-            <a href="https://www.abs.gov.au/statistics/economy/business-indicators/counts-australian-businesses-including-entries-and-exits/jul2021-jun2025">Australian
-              Bureau of Statistics, Counts of Australian Businesses</a>, data cube 2, released 16 December 2025.
-            Businesses operating at the end of June 2024 and June 2025.</li>
-          <li><strong>State populations:</strong> Australian Bureau of Statistics, National, state and territory
-            population,
-            <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/jun-2024">June
-              2024</a> and
-            <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/jun-2025">June
-              2025</a>.</li>
-          <li><strong>Coffee imported into Australia:</strong> <a href="https://comtradeplus.un.org/">UN
-              Comtrade</a>, Australia's own import records, customs code 0901, calendar year 2025.</li>
-          <li><strong>Coffee grown and yield per hectare:</strong> Food and Agriculture Organization of the United
-            Nations, via Our World in Data &mdash;
-            <a href="https://ourworldindata.org/grapher/coffee-bean-production">production</a> and
-            <a href="https://ourworldindata.org/grapher/coffee-yields">yield</a>, 1961 to 2024.</li>
-          <li><strong>Wholesale prices:</strong>
-            <a href="https://www.ico.org/documents/cy2025-26/cmr-0926-e.pdf">International Coffee Organization,
-              Coffee Market Report, September 2026</a>, October 2025 to September 2026.</li>
-          <li><strong>Half of us drink coffee weekly:</strong>
-            <a href="https://www.roymorgan.com/findings/10068-thinknewsbrands-total-news-readership-media-release-september-2025">Roy
-              Morgan Research</a>, 24 November 2025 (51% of Australians aged 14 and over).</li>
-          <li><strong>Map shapes and country locations:</strong>
-            <a href="https://github.com/topojson/world-atlas">World Atlas</a> (Natural Earth),
-            <a href="https://github.com/rowanhogan/australian-states">Australian state boundaries by Rowan
-              Hogan</a>,
-            <a href="https://github.com/dr5hn/countries-states-cities-database">country coordinates by
-              dr5hn</a>.</li>
-        </ul>
-        </div>
-      </div>
-      <div class="pure-u-1-2">
-        <div class="description description-right small-font">
-        <h3>Good to know</h3>
-        <ul>
-          <li>The Australian Bureau of Statistics counts cafes and restaurants together in one industry class
-            (4511), so these numbers include restaurants. They count businesses, not shop fronts.</li>
-          <li>The Food and Agriculture Organization keeps no coffee production record for Australia. That is not
-            the same as saying Australia grows none: Australia does have a small coffee industry, but it is too
-            small to appear in this dataset, so this page cannot measure it.</li>
-          <li>The import figures cover the 22 coffee-growing countries Australia bought from in 2025. Countries
-            that mainly re-export coffee, such as Italy and Switzerland, are left out, so the real total of coffee
-            entering Australia is higher than the number shown here.</li>
-          <li>On the flow map every line ends at the middle of Australia, not at the port where the coffee
-            arrived.</li>
-          <li>The Central African Republic and Guinea are left out of the production charts. Their reported output
-            jumps 5 to 30 times after 2015, which looks like a change in estimating method rather than a
-            harvest.</li>
-          <li>The prices are world wholesale prices for green beans. They are not the price of a cup of coffee in
-            an Australian cafe.</li>
-        </ul>
-        </div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
-
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <div class="page-footer">
-          <p class="byline">Created by Liuxiaoxi Yang &middot; October 2026</p>
-        </div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
-
-  </div> <!-- end page -->
-
-  <script type="text/javascript">
-    var specVis1 = "js/au_cafe_choropleth.vg.json";
-    var specVis2 = "js/au_cafe_slopegraph.vg.json";
-    var specVis3 = "js/au_cafe_business_size_stacked_bar.vg.json";
-    var specVis4 = "js/au_coffee_import_flow_map.vg.json";
-    var specVis5 = "js/au_coffee_supplier_ranked_bar.vg.json";
-    var specVis6 = "js/world_production_symbol_map.vg.json";
-    var specVis7 = "js/world_yield_heatmap.vg.json";
-    var specVis8 = "js/coffee_price_line_chart.vg.json";
-    var specVis9 = "js/world_production_bump_chart.vg.json";
-
-    vegaEmbed('#vis1', specVis1, { "actions": false }).catch(console.error);
-    vegaEmbed('#vis2', specVis2, { "actions": false }).catch(console.error);
-    vegaEmbed('#vis3', specVis3, { "actions": false }).catch(console.error);
-    vegaEmbed('#vis4', specVis4, { "actions": false }).catch(console.error);
-    vegaEmbed('#vis5', specVis5, { "actions": false }).catch(console.error);
-    vegaEmbed('#vis6', specVis6, { "actions": false }).catch(console.error);
-    vegaEmbed('#vis7', specVis7, { "actions": false }).catch(console.error);
-    vegaEmbed('#vis8', specVis8, { "actions": false }).catch(console.error);
-    vegaEmbed('#vis9', specVis9, { "actions": false }).catch(console.error);
-  </script>
-
+  <script src="js/main.js"></script>
 </body>
-
 </html>

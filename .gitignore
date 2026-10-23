@@ -1,1 +1,15 @@
 .DS_Store
+.claude/
+node_modules/
+
+# course files and working images that should not be published
+Data Visualisation 2 Specifications.pdf
+DV2 - Assignment Template v3.0.docx
+DV2 - Assignment Submission (draft).docx
+ChatGPT Image*.png
+003B0A94-*.png
+design/
+DEMO-GUIDE.md
+
+# unreferenced working assets (2 MB source illustration)
+assets/

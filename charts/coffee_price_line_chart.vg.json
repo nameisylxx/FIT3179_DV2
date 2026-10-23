@@ -1,0 +1,278 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": [
+      "Wholesale coffee prices by bean type,",
+      "October 2025 to September 2026"
+    ],
+    "subtitle": [
+      "Arabica types in blue, Robusta in pink. Monthly averages.",
+      "Click a bean type in the legend to highlight it."
+    ]
+  },
+  "width": "container",
+  "height": 340,
+  "data": {
+    "url": "data/processed/coffee_price_by_variety_monthly.csv"
+  },
+  "transform": [
+    {
+      "calculate": "toDate(datum.month + '-01')",
+      "as": "date"
+    },
+    {
+      "fold": [
+        "colombian_milds_cents_per_lb",
+        "other_milds_cents_per_lb",
+        "brazilian_naturals_cents_per_lb",
+        "robustas_cents_per_lb"
+      ],
+      "as": [
+        "series_key",
+        "price"
+      ]
+    },
+    {
+      "calculate": "toNumber(datum.price)",
+      "as": "cents_per_lb"
+    },
+    {
+      "calculate": "{'colombian_milds_cents_per_lb':'Colombian Milds','other_milds_cents_per_lb':'Other Milds','brazilian_naturals_cents_per_lb':'Brazilian Naturals','robustas_cents_per_lb':'Robusta'}[datum.series_key]",
+      "as": "bean_type"
+    }
+  ],
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "Bean_highlight",
+          "select": {
+            "type": "point",
+            "fields": [
+              "bean_type"
+            ]
+          },
+          "bind": "legend"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.8,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "axis": {
+            "title": null,
+            "format": "%b %Y",
+            "labelFontSize": 12,
+            "grid": false,
+            "values": [
+              {
+                "year": 2025,
+                "month": "oct",
+                "date": 1
+              },
+              {
+                "year": 2026,
+                "month": "jan",
+                "date": 1
+              },
+              {
+                "year": 2026,
+                "month": "apr",
+                "date": 1
+              },
+              {
+                "year": 2026,
+                "month": "jul",
+                "date": 1
+              }
+            ]
+          }
+        },
+        "y": {
+          "field": "cents_per_lb",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              100,
+              450
+            ]
+          },
+          "axis": {
+            "title": "US cents per pound",
+            "grid": true,
+            "gridColor": "#EDE6DC",
+            "domain": false,
+            "ticks": false,
+            "values": [
+              100,
+              200,
+              300,
+              400
+            ]
+          }
+        },
+        "color": {
+          "field": "bean_type",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Colombian Milds",
+              "Other Milds",
+              "Brazilian Naturals",
+              "Robusta"
+            ],
+            "range": [
+              "#2F4B8C",
+              "#5B7FC8",
+              "#86A2DA",
+              "#B5446E"
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "direction": "horizontal",
+            "columns": 2,
+            "labelLimit": 170,
+            "symbolType": "stroke",
+            "symbolStrokeWidth": 3,
+            "columnPadding": 18,
+            "rowPadding": 4
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "Bean_highlight",
+            "value": 1
+          },
+          "value": 0.15
+        },
+        "tooltip": [
+          {
+            "field": "bean_type",
+            "title": "Bean type"
+          },
+          {
+            "field": "date",
+            "type": "temporal",
+            "title": "Month",
+            "format": "%B %Y"
+          },
+          {
+            "field": "cents_per_lb",
+            "title": "US cents per pound",
+            "format": ".0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "date": "2025-10-05",
+            "y": 441
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.date)",
+          "as": "d"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#2B1D13",
+        "text": "Highest month in this 12-month window"
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "date": "2026-03-01",
+            "y": 262
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.date)",
+          "as": "d"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#2B1D13",
+        "text": [
+          "Arabica beans cost about",
+          "twice as much as Robusta."
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#2B1D13",
+      "subtitleFontSize": 12.5,
+      "subtitleColor": "#6B5847",
+      "subtitlePadding": 4
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}
