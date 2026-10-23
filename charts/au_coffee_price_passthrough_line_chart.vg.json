@@ -1,0 +1,248 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": [
+      "Does the world bean price reach the Australian cup?",
+      "October 2025 to August 2026, all three set to 100 in October 2025"
+    ],
+    "subtitle": [
+      "World bean price in blue. Australian consumer prices in terracotta.",
+      "Above 100 means dearer than October 2025, below 100 means cheaper."
+    ]
+  },
+  "width": "container",
+  "height": 340,
+  "data": {
+    "url": "data/processed/au_coffee_price_passthrough.csv"
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(datum.index_base_oct_2025)",
+      "as": "idx"
+    },
+    {
+      "calculate": "toNumber(datum.raw_value)",
+      "as": "raw"
+    },
+    {
+      "calculate": "toDate(datum.month + '-01')",
+      "as": "date"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "axis": {
+        "title": null,
+        "format": "%b %Y",
+        "labelAngle": 0,
+        "tickCount": 6,
+        "grid": false,
+        "domainColor": "#EDE6DC"
+      }
+    },
+    "y": {
+      "field": "idx",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          70,
+          110
+        ]
+      },
+      "axis": {
+        "title": "Price, October 2025 = 100",
+        "values": [
+          70,
+          80,
+          90,
+          100,
+          110
+        ],
+        "grid": true,
+        "gridColor": "#EDE6DC",
+        "domain": false,
+        "ticks": false
+      }
+    },
+    "color": {
+      "field": "series",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "World coffee bean price",
+          "Australian shop coffee",
+          "Australian meals out and take away"
+        ],
+        "range": [
+          "#2C5F8A",
+          "#9C4420",
+          "#D9902B"
+        ]
+      },
+      "legend": {
+        "title": null,
+        "orient": "top",
+        "direction": "vertical",
+        "symbolType": "stroke",
+        "symbolStrokeWidth": 3,
+        "labelLimit": 320
+      }
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "y": 100
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#2B1D13",
+        "strokeWidth": 1,
+        "strokeDash": [
+          4,
+          3
+        ]
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#2B1D13"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.6,
+        "point": {
+          "filled": true,
+          "size": 34
+        }
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "series",
+            "title": "Series"
+          },
+          {
+            "field": "month",
+            "title": "Month"
+          },
+          {
+            "field": "idx",
+            "title": "Index (Oct 2025 = 100)",
+            "format": ".1f"
+          },
+          {
+            "field": "raw",
+            "title": "Actual value",
+            "format": ".2f"
+          },
+          {
+            "field": "unit",
+            "title": "Measured in"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.month === '2026-08'"
+        },
+        {
+          "calculate": "format(datum.idx - 100, '+.1f') + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 12.5,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        },
+        "y": {
+          "field": "idx",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "month": "2026-03",
+            "y": 107.0
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "toDate(datum.month + '-01')",
+          "as": "date"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 12.5,
+        "fontWeight": 600,
+        "lineBreak": "|",
+        "text": "The world bean price fell 12%, but what Australians pay barely moved."
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#2C5F8A"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#2B1D13",
+      "subtitleFontSize": 12.5,
+      "subtitleColor": "#6B5847",
+      "subtitlePadding": 4
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#4A3B2E"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

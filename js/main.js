@@ -4,16 +4,17 @@ const embedOptions = { actions: false, renderer: 'svg' };
 const charts = [
   ['#chart_cafe_density', 'charts/au_cafe_choropleth.vg.json'],
   ['#chart_cafe_change', 'charts/au_cafe_slopegraph.vg.json'],
-  ['#chart_cafe_size', 'charts/au_cafe_business_size_stacked_bar.vg.json'],
+  ['#chart_cafe_size', 'charts/au_cafe_business_size_marimekko.vg.json'],
   ['#chart_import_flows', 'charts/au_coffee_import_flow_map.vg.json'],
-  ['#chart_suppliers', 'charts/au_coffee_supplier_ranked_bar.vg.json'],
+  ['#chart_suppliers', 'charts/au_coffee_supplier_isotype.vg.json'],
   ['#chart_treemap', 'charts/world_production_treemap.vg.json'],
   ['#chart_production_map', 'charts/world_production_symbol_map.vg.json'],
   ['#chart_bump', 'charts/world_production_bump_chart.vg.json'],
   ['#chart_yield', 'charts/world_yield_heatmap.vg.json'],
-  ['#chart_prices', 'charts/coffee_price_line_chart.vg.json'],
-  ['#chart_species', 'charts/coffee_robusta_share_line_chart.vg.json'],
+  ['#chart_prices', 'charts/coffee_price_connected_scatter.vg.json'],
+  ['#chart_species', 'charts/coffee_robusta_share_waffle.vg.json'],
   ['#chart_balance', 'charts/coffee_supply_demand_waterfall.vg.json'],
+  ['#chart_passthrough', 'charts/au_coffee_price_passthrough_line_chart.vg.json'],
 ];
 
 // Wait for the web fonts so Vega measures text with the final typeface.

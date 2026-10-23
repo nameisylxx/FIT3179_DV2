@@ -1,0 +1,172 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": [
+      "Out of every 100 coffee beans grown,",
+      "how many are Robusta?"
+    ],
+    "subtitle": [
+      "One square = 1% of world production, by coffee year (October",
+      "to September). 2025/26 is an ICO estimate"
+    ]
+  },
+  "data": {
+    "url": "data/processed/coffee_world_supply_demand_balance.csv"
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(datum.robusta_share_of_production_pct)",
+      "as": "robusta_share"
+    },
+    {
+      "calculate": "round(datum.robusta_share)",
+      "as": "robusta_squares"
+    },
+    {
+      "calculate": "datum.coffee_year + (datum.coffee_year === '2025/26' ? ' (est.)' : '') + ': ' + format(datum.robusta_share, '.1f') + '%'",
+      "as": "panel"
+    },
+    {
+      "calculate": "sequence(0, 100)",
+      "as": "square"
+    },
+    {
+      "flatten": [
+        "square"
+      ]
+    },
+    {
+      "calculate": "datum.square % 10",
+      "as": "col"
+    },
+    {
+      "calculate": "floor(datum.square / 10)",
+      "as": "row"
+    },
+    {
+      "calculate": "datum.square < 41 && datum.square < datum.robusta_squares ? 'Robusta' : datum.square < datum.robusta_squares ? 'Robusta above the 2020/21 level' : 'Arabica'",
+      "as": "species"
+    }
+  ],
+  "facet": {
+    "field": "panel",
+    "type": "nominal",
+    "sort": "ascending",
+    "header": {
+      "title": null,
+      "labelFontSize": 12.5,
+      "labelFontWeight": 600,
+      "labelColor": "#2B1D13",
+      "labelPadding": 6
+    }
+  },
+  "columns": 3,
+  "spacing": {
+    "row": 14,
+    "column": 22
+  },
+  "spec": {
+    "width": 128,
+    "height": 128,
+    "mark": {
+      "type": "square",
+      "size": 120,
+      "opacity": 1
+    },
+    "encoding": {
+      "x": {
+        "field": "col",
+        "type": "quantitative",
+        "scale": {
+          "domain": [
+            -0.5,
+            9.5
+          ]
+        },
+        "axis": null
+      },
+      "y": {
+        "field": "row",
+        "type": "quantitative",
+        "scale": {
+          "domain": [
+            -0.5,
+            9.5
+          ]
+        },
+        "axis": null
+      },
+      "color": {
+        "field": "species",
+        "type": "nominal",
+        "scale": {
+          "domain": [
+            "Robusta",
+            "Robusta above the 2020/21 level",
+            "Arabica"
+          ],
+          "range": [
+            "#B5446E",
+            "#6E1F42",
+            "#D5DDEE"
+          ]
+        },
+        "legend": {
+          "title": null,
+          "orient": "top",
+          "direction": "horizontal",
+          "columns": 2,
+          "labelLimit": 240,
+          "symbolType": "square",
+          "symbolSize": 140,
+          "columnPadding": 16,
+          "rowPadding": 4
+        }
+      },
+      "tooltip": [
+        {
+          "field": "coffee_year",
+          "title": "Coffee year"
+        },
+        {
+          "field": "robusta_share",
+          "type": "quantitative",
+          "title": "Robusta share of production (%)",
+          "format": ".1f"
+        },
+        {
+          "field": "robusta_production",
+          "type": "quantitative",
+          "title": "Robusta (million bags)",
+          "format": ".1f"
+        },
+        {
+          "field": "arabica_production",
+          "type": "quantitative",
+          "title": "Arabica (million bags)",
+          "format": ".1f"
+        }
+      ]
+    }
+  },
+  "config": {
+    "background": null,
+    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#2B1D13",
+      "subtitleFontSize": 12.5,
+      "subtitleColor": "#6B5847",
+      "subtitlePadding": 4
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "labelColor": "#4A3B2E"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

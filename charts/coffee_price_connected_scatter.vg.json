@@ -1,0 +1,598 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": [
+      "Arabica and Robusta wholesale prices,",
+      "October 2025 to September 2026"
+    ],
+    "subtitle": [
+      "Each dot is one month, joined in time order.",
+      "Arabica is the average of the three Arabica groups"
+    ]
+  },
+  "width": "container",
+  "height": 360,
+  "data": {
+    "url": "data/processed/coffee_price_by_variety_monthly.csv"
+  },
+  "transform": [
+    {
+      "calculate": "toDate(datum.month + '-01')",
+      "as": "date"
+    },
+    {
+      "calculate": "toNumber(datum.robustas_cents_per_lb)",
+      "as": "robusta"
+    },
+    {
+      "calculate": "toNumber(datum.colombian_milds_cents_per_lb)",
+      "as": "colombian"
+    },
+    {
+      "calculate": "toNumber(datum.other_milds_cents_per_lb)",
+      "as": "other_milds"
+    },
+    {
+      "calculate": "toNumber(datum.brazilian_naturals_cents_per_lb)",
+      "as": "brazilian"
+    },
+    {
+      "calculate": "(datum.colombian + datum.other_milds + datum.brazilian) / 3",
+      "as": "arabica"
+    },
+    {
+      "calculate": "datum.arabica / datum.robusta",
+      "as": "ratio"
+    },
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "order"
+        }
+      ],
+      "sort": [
+        {
+          "field": "date"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.order === 1 ? 'Oct 2025' : datum.order === 12 ? 'Sep 2026' : timeFormat(datum.date, '%b')",
+      "as": "label"
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "robusta": 155,
+            "arabica": 310
+          },
+          {
+            "robusta": 205,
+            "arabica": 410
+          }
+        ]
+      },
+      "mark": {
+        "type": "line",
+        "color": "#B9A893",
+        "strokeDash": [
+          5,
+          4
+        ],
+        "strokeWidth": 1.4
+      },
+      "encoding": {
+        "x": {
+          "field": "robusta",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              155,
+              222
+            ],
+            "nice": false,
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "arabica",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              290,
+              415
+            ],
+            "nice": false,
+            "zero": false
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "robusta": 197,
+            "arabica": 405
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "angle": 0,
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#8A7663",
+        "text": [
+          "Line where Arabica costs",
+          "exactly twice as much"
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "robusta",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              155,
+              222
+            ],
+            "nice": false,
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "arabica",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              290,
+              415
+            ],
+            "nice": false,
+            "zero": false
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#8C5A3C",
+        "strokeWidth": 2,
+        "opacity": 0.75,
+        "interpolate": "linear"
+      },
+      "encoding": {
+        "x": {
+          "field": "robusta",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              155,
+              222
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": {
+            "title": "Robusta price (US cents per pound)",
+            "values": [
+              160,
+              180,
+              200,
+              220
+            ],
+            "grid": true,
+            "gridColor": "#EDE6DC",
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "y": {
+          "field": "arabica",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              290,
+              415
+            ],
+            "nice": false,
+            "zero": false
+          },
+          "axis": {
+            "title": "Arabica price (US cents per pound)",
+            "values": [
+              300,
+              340,
+              380
+            ],
+            "grid": true,
+            "gridColor": "#EDE6DC",
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "order": {
+          "field": "order",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "Month_hover",
+          "select": {
+            "type": "point",
+            "fields": [
+              "order"
+            ],
+            "on": "pointerover",
+            "clear": "pointerout",
+            "nearest": true
+          }
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.2,
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "robusta",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              155,
+              222
+            ],
+            "nice": false,
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "arabica",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              290,
+              415
+            ],
+            "nice": false,
+            "zero": false
+          }
+        },
+        "color": {
+          "field": "order",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1,
+              12
+            ],
+            "range": [
+              "#E3B98C",
+              "#5A2E14"
+            ]
+          },
+          "legend": null
+        },
+        "size": {
+          "condition": {
+            "param": "Month_hover",
+            "empty": false,
+            "value": 220
+          },
+          "value": 110
+        },
+        "tooltip": [
+          {
+            "field": "date",
+            "type": "temporal",
+            "title": "Month",
+            "format": "%B %Y"
+          },
+          {
+            "field": "arabica",
+            "type": "quantitative",
+            "title": "Arabica, average (US¢/lb)",
+            "format": ".0f"
+          },
+          {
+            "field": "colombian",
+            "type": "quantitative",
+            "title": "  Colombian Milds",
+            "format": ".0f"
+          },
+          {
+            "field": "other_milds",
+            "type": "quantitative",
+            "title": "  Other Milds",
+            "format": ".0f"
+          },
+          {
+            "field": "brazilian",
+            "type": "quantitative",
+            "title": "  Brazilian Naturals",
+            "format": ".0f"
+          },
+          {
+            "field": "robusta",
+            "type": "quantitative",
+            "title": "Robusta (US¢/lb)",
+            "format": ".0f"
+          },
+          {
+            "field": "ratio",
+            "type": "quantitative",
+            "title": "Arabica ÷ Robusta",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "field": "order",
+            "oneOf": [
+              3,
+              4,
+              5,
+              10
+            ]
+          }
+        },
+        {
+          "calculate": "datum.robusta + {'1':-1.6,'2':-1.6,'3':1.6,'4':1.6,'5':1.6,'6':0,'7':-1.6,'8':-1.6,'9':0,'10':1.6,'11':-1.6,'12':0}[datum.order + '']",
+          "as": "label_x"
+        },
+        {
+          "calculate": "datum.arabica + {'1':-2.5,'2':2.5,'3':0,'4':-1,'5':-2,'6':5.5,'7':1,'8':0,'9':-6,'10':-3.5,'11':1.5,'12':-6}[datum.order + '']",
+          "as": "label_y"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#2B1D13"
+      },
+      "encoding": {
+        "x": {
+          "field": "label_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              155,
+              222
+            ],
+            "nice": false,
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              290,
+              415
+            ],
+            "nice": false,
+            "zero": false
+          }
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "field": "order",
+            "oneOf": [
+              1,
+              2,
+              7,
+              8,
+              11
+            ]
+          }
+        },
+        {
+          "calculate": "datum.robusta + {'1':-1.6,'2':-1.6,'3':1.6,'4':1.6,'5':1.6,'6':0,'7':-1.6,'8':-1.6,'9':0,'10':1.6,'11':-1.6,'12':0}[datum.order + '']",
+          "as": "label_x"
+        },
+        {
+          "calculate": "datum.arabica + {'1':-2.5,'2':2.5,'3':0,'4':-1,'5':-2,'6':5.5,'7':1,'8':0,'9':-6,'10':-3.5,'11':1.5,'12':-6}[datum.order + '']",
+          "as": "label_y"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#2B1D13"
+      },
+      "encoding": {
+        "x": {
+          "field": "label_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              155,
+              222
+            ],
+            "nice": false,
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              290,
+              415
+            ],
+            "nice": false,
+            "zero": false
+          }
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "field": "order",
+            "oneOf": [
+              6,
+              9,
+              12
+            ]
+          }
+        },
+        {
+          "calculate": "datum.robusta + {'1':-1.6,'2':-1.6,'3':1.6,'4':1.6,'5':1.6,'6':0,'7':-1.6,'8':-1.6,'9':0,'10':1.6,'11':-1.6,'12':0}[datum.order + '']",
+          "as": "label_x"
+        },
+        {
+          "calculate": "datum.arabica + {'1':-2.5,'2':2.5,'3':0,'4':-1,'5':-2,'6':5.5,'7':1,'8':0,'9':-6,'10':-3.5,'11':1.5,'12':-6}[datum.order + '']",
+          "as": "label_y"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#2B1D13"
+      },
+      "encoding": {
+        "x": {
+          "field": "label_x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              155,
+              222
+            ],
+            "nice": false,
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "label_y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              290,
+              415
+            ],
+            "nice": false,
+            "zero": false
+          }
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "robusta": 222,
+            "arabica": 316
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "fontSize": 12.5,
+        "fontWeight": 600,
+        "color": "#2B1D13",
+        "text": [
+          "Both prices fell from",
+          "October to June, then",
+          "rose together in July.",
+          "Arabica stayed 1.8 to 2",
+          "times the Robusta price."
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "robusta",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              155,
+              222
+            ],
+            "nice": false,
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "arabica",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              290,
+              415
+            ],
+            "nice": false,
+            "zero": false
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#2B1D13",
+      "subtitleFontSize": 12.5,
+      "subtitleColor": "#6B5847",
+      "subtitlePadding": 4
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

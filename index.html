@@ -39,6 +39,10 @@
         <img class="section-icon" src="images/icon_cup.svg" alt="" aria-hidden="true" />
       </div>
       <p class="standfirst">Cafés and restaurants across Australia.</p>
+      <p class="data-note"><strong>What is counted:</strong> the Australian Bureau of Statistics puts cafés and
+        restaurants in a single industry class (4511) and does not separate them. Every number in this section is
+        therefore <strong>cafés and restaurants together</strong>, not cafés on their own, and it counts businesses
+        rather than shop fronts.</p>
 
       <div class="row">
         <figure class="card span-6" id="fig-1">
@@ -46,12 +50,12 @@
           <h3 class="insight">Victoria has the most cafés and restaurants per person.</h3>
           <p class="lede">Victoria has 25 per 10,000 people, the most of any state. New South Wales has 23.</p>
           <div class="chart" id="chart_cafe_density" role="img" aria-label="Map of Australian states shaded by cafés and restaurants per 10,000 people. Victoria is highest."></div>
-          <p class="how"><strong>How to read:</strong> a darker shade means more cafés and restaurants for every 10,000 people.</p>
+          <p class="how"><strong>How to read:</strong> <mark>the darker the state, the more cafés and restaurants</mark> for every 10,000 people.</p>
           <p class="links">Source: Australian Bureau of Statistics · <a href="charts/au_cafe_choropleth.vg.json">Chart code (JSON)</a> · <a href="data/processed/au_cafes_restaurants_by_state.csv">Data (CSV)</a></p>
         </figure>
 
         <figure class="card span-6" id="fig-2">
-          <div class="card-head"><span class="fig-no">2</span><span class="chart-name">A changing café landscape</span><span class="tag">Slopegraph</span></div>
+          <div class="card-head"><span class="fig-no">2</span><span class="chart-name">A changing café and restaurant landscape</span><span class="tag">Slopegraph</span></div>
           <h3 class="insight">Cafés and restaurants lagged population growth in most states.</h3>
           <p class="lede">Between June 2024 and June 2025, only Western Australia and South Australia added cafés and restaurants faster than their population grew.</p>
           <div class="chart" id="chart_cafe_change" role="img" aria-label="Slopegraph of cafés and restaurants per 10,000 people in each state, June 2024 and June 2025."></div>
@@ -60,14 +64,21 @@
         </figure>
       </div>
 
+      <p class="bridge">Read the two charts together: the map shows <strong>where</strong> cafés and restaurants are
+        thickest on the ground today, and the slopegraph shows <strong>which way each state moved</strong> over the
+        year. Victoria leads on both counts in the map, yet its line slopes down, because Victoria lost 40
+        businesses while its population grew by 93,000. Only Western Australia and South Australia opened new
+        cafés and restaurants faster than they gained people, so nationally the country ended up with 616 more
+        of them but slightly fewer per person.</p>
+
       <div class="row">
         <figure class="card span-12" id="fig-3">
-          <div class="card-head"><span class="fig-no">3</span><span class="chart-name">The business behind the counter</span><span class="tag">Stacked bar chart</span></div>
+          <div class="card-head"><span class="fig-no">3</span><span class="chart-name">The business behind the counter</span><span class="tag">Marimekko chart</span></div>
           <h3 class="insight">Nine in ten cafés and restaurants have fewer than 20 staff.</h3>
           <p class="lede">Many are run by their owners. In Victoria, 1 in 4 has no employees at all.</p>
-          <div class="chart" id="chart_cafe_size" role="img" aria-label="Stacked bars showing the share of cafés and restaurants by number of employees in each state."></div>
-          <p class="how"><strong>How to read:</strong> each bar is one state. Its segments show what share of businesses have each number of employees.</p>
-          <p class="links">Source: Australian Bureau of Statistics · <a href="charts/au_cafe_business_size_stacked_bar.vg.json">Chart code (JSON)</a> · <a href="data/processed/au_cafes_restaurants_by_state.csv">Data (CSV)</a></p>
+          <div class="chart" id="chart_cafe_size" role="img" aria-label="Marimekko chart: one column per state, as wide as its share of all Australian cafés and restaurants, split by number of employees."></div>
+          <p class="how"><strong>How to read:</strong> each column is one state. A wider column means more businesses in that state. The coloured blocks show what share have each number of employees. Click a size in the legend to highlight it.</p>
+          <p class="links">Source: Australian Bureau of Statistics · <a href="charts/au_cafe_business_size_marimekko.vg.json">Chart code (JSON)</a> · <a href="data/processed/au_cafes_restaurants_by_state.csv">Data (CSV)</a></p>
         </figure>
       </div>
     </section>
@@ -94,12 +105,12 @@
 
       <div class="row">
         <figure class="card span-6" id="fig-5">
-          <div class="card-head"><span class="fig-no">5</span><span class="chart-name">Our selected suppliers</span><span class="tag">Ranked bar chart</span></div>
+          <div class="card-head"><span class="fig-no">5</span><span class="chart-name">Our selected suppliers</span><span class="tag">Isotype chart</span></div>
           <h3 class="insight">Our closest neighbour, Papua New Guinea, ranks fourth.</h3>
           <p class="lede">The top eight suppliers among the coffee-growing countries.</p>
-          <div class="chart" id="chart_suppliers" role="img" aria-label="Bar chart of the eight biggest coffee-growing suppliers to Australia. Brazil is first."></div>
-          <p class="how"><strong>How to read:</strong> a longer bar means more tonnes of coffee beans imported in 2025.</p>
-          <p class="links">Source: UN Comtrade (United Nations trade database) · <a href="charts/au_coffee_supplier_ranked_bar.vg.json">Chart code (JSON)</a> · <a href="data/processed/au_coffee_imports_by_origin.csv">Data (CSV)</a></p>
+          <div class="chart" id="chart_suppliers" role="img" aria-label="Isotype chart of the eight biggest coffee-growing suppliers to Australia, drawn as rows of coffee sacks. Brazil has 15 sacks, the most."></div>
+          <p class="how"><strong>How to read:</strong> each sack is 2,000 tonnes of coffee beans imported in 2025. More sacks means more coffee. The exact tonnes are at the end of each row.</p>
+          <p class="links">Source: UN Comtrade (United Nations trade database) · <a href="charts/au_coffee_supplier_isotype.vg.json">Chart code (JSON)</a> · <a href="data/processed/au_coffee_imports_by_origin.csv">Data (CSV)</a></p>
         </figure>
 
         <figure class="card span-6" id="fig-6">
@@ -165,21 +176,21 @@
 
       <div class="row">
         <figure class="card span-6" id="fig-10">
-          <div class="card-head"><span class="fig-no">10</span><span class="chart-name">The price of the bean</span><span class="tag">Line chart</span></div>
+          <div class="card-head"><span class="fig-no">10</span><span class="chart-name">The price of the bean</span><span class="tag">Connected scatterplot</span></div>
           <h3 class="insight">Wholesale prices fell through the first half of 2026.</h3>
-          <p class="lede">In this 12-month window prices were highest in November 2025 and lowest in June 2026, then bounced back. Arabica beans cost about twice as much as Robusta.</p>
-          <div class="chart" id="chart_prices" role="img" aria-label="Line chart of monthly wholesale prices for three Arabica types and Robusta from October 2025 to September 2026."></div>
-          <p class="how"><strong>How to read:</strong> each line is one type of bean. Higher on the chart means a higher price. Click a name in the legend to highlight that bean type. Shift-click a highlighted name to switch it off.</p>
-          <p class="links">Source: International Coffee Organization · <a href="charts/coffee_price_line_chart.vg.json">Chart code (JSON)</a> · <a href="data/processed/coffee_price_by_variety_monthly.csv">Data (CSV)</a></p>
+          <p class="lede">Arabica and Robusta prices moved together: both fell from November 2025 to June 2026, then bounced back in July. Arabica beans cost about twice as much as Robusta every month.</p>
+          <div class="chart" id="chart_prices" role="img" aria-label="Connected scatterplot of monthly Arabica and Robusta wholesale prices from October 2025 to September 2026. The path runs down to June 2026 and back up in July."></div>
+          <p class="how"><strong>How to read:</strong> each dot is one month. Further right means a higher Robusta price, higher up means a higher Arabica price. Follow the line from October 2025 (light) to September 2026 (dark). Hover a dot for all bean prices.</p>
+          <p class="links">Source: International Coffee Organization · <a href="charts/coffee_price_connected_scatter.vg.json">Chart code (JSON)</a> · <a href="data/processed/coffee_price_by_variety_monthly.csv">Data (CSV)</a></p>
         </figure>
 
         <figure class="card span-6" id="fig-11">
-          <div class="card-head"><span class="fig-no">11</span><span class="chart-name">Arabica or Robusta?</span><span class="tag">Line chart</span></div>
+          <div class="card-head"><span class="fig-no">11</span><span class="chart-name">Arabica or Robusta?</span><span class="tag">Waffle chart</span></div>
           <h3 class="insight">Robusta is a bigger part of the world's coffee crop.</h3>
           <p class="lede">Robusta is 43.1% of production in 2025/26. The two years before averaged 41.7%. Arabica also fell below 60% of green bean exports for the first 11 months of a coffee year, the first time on record.</p>
-          <div class="chart" id="chart_species" role="img" aria-label="Line chart of Robusta's share of world coffee production for six coffee years, from 40.9% in 2020/21 to 43.1% in 2025/26."></div>
-          <p class="how"><strong>How to read:</strong> each dot is one coffee year. Higher means Robusta is a bigger share of the beans grown. The dashed part is an estimate.</p>
-          <p class="links">Source: International Coffee Organization · <a href="charts/coffee_robusta_share_line_chart.vg.json">Chart code (JSON)</a> · <a href="data/processed/coffee_world_supply_demand_balance.csv">Data (CSV)</a></p>
+          <div class="chart" id="chart_species" role="img" aria-label="Six waffle charts of 100 squares, one per coffee year, showing Robusta's share of world coffee production, from 40.9% in 2020/21 to 43.1% in 2025/26."></div>
+          <p class="how"><strong>How to read:</strong> each grid is one coffee year and each square is 1 in 100 beans grown. Pink squares are Robusta. Dark pink squares are Robusta above the 2020/21 level.</p>
+          <p class="links">Source: International Coffee Organization · <a href="charts/coffee_robusta_share_waffle.vg.json">Chart code (JSON)</a> · <a href="data/processed/coffee_world_supply_demand_balance.csv">Data (CSV)</a></p>
         </figure>
       </div>
 
@@ -193,6 +204,22 @@
           <p class="links">Source: International Coffee Organization · <a href="charts/coffee_supply_demand_waterfall.vg.json">Chart code (JSON)</a> · <a href="data/processed/coffee_world_supply_demand_balance.csv">Data (CSV)</a></p>
         </figure>
 
+        <figure class="card span-6" id="fig-13">
+          <div class="card-head"><span class="fig-no">13</span><span class="chart-name">From world price to Australian cup</span><span class="tag">Indexed line chart</span></div>
+          <h3 class="insight">The world price fell 12%. What Australians pay did not follow.</h3>
+          <p class="lede">Between October 2025 and August 2026 the world bean price dropped 12%, but Australian shop coffee moved only 1.5% lower and eating out got 3.6% dearer. The bean is only a small part of what a cup costs here.</p>
+          <div class="chart" id="chart_passthrough" role="img" aria-label="Indexed line chart comparing the world coffee bean price with two Australian consumer price indexes from October 2025 to August 2026. The world price falls to 76 at its lowest and ends at 88, while Australian shop coffee stays near 100 and meals out rises to 104."></div>
+          <p class="how"><strong>How to read:</strong> all three lines start at 100 in October 2025, so they can be compared. <mark>Below 100 is cheaper than October 2025, above 100 is dearer.</mark></p>
+          <p class="data-note"><strong>What is counted:</strong> the Australian Bureau of Statistics measures
+            <strong>&ldquo;coffee, tea and cocoa&rdquo; together</strong>, not coffee on its own, and
+            <strong>&ldquo;meals out and take away foods&rdquo;</strong> covers all eating out, not just a cup of
+            coffee. Neither is the price of a flat white. They are the closest public measures of what Australians
+            pay.</p>
+          <p class="links">Source: International Coffee Organization and Australian Bureau of Statistics · <a href="charts/au_coffee_price_passthrough_line_chart.vg.json">Chart code (JSON)</a> · <a href="data/processed/au_coffee_price_passthrough.csv">Data (CSV)</a></p>
+        </figure>
+      </div>
+
+      <div class="row">
         <div class="card takeaways span-6">
           <img class="takeaways-art" src="images/icon_beans.svg" alt="" aria-hidden="true" />
           <h3>The journey in one minute</h3>
@@ -202,6 +229,7 @@
             <li>In 2024, five countries grew 7 in 10 of the world's beans.</li>
             <li>Vietnam rose from 17th to 2nd in ten years.</li>
             <li>Wholesale prices fell through the first half of 2026.</li>
+            <li>That fall did not reach Australian shelves or cafés.</li>
           </ol>
         </div>
       </div>
@@ -249,6 +277,12 @@
               <td>October 2025 to September 2026 (prices); coffee years 2020/21 to 2025/26 (supply and demand)</td>
             </tr>
             <tr>
+              <td>13</td>
+              <td>What Australians pay for coffee and for eating out</td>
+              <td><a href="https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia/aug-2026">Australian Bureau of Statistics, Consumer Price Index, Australia, August 2026</a>, Table 3, expenditure classes &ldquo;Coffee, tea and cocoa&rdquo; and &ldquo;Meals out and take away foods&rdquo;, weighted average of eight capital cities</td>
+              <td>October 2025 to August 2026</td>
+            </tr>
+            <tr>
               <td>Introduction</td>
               <td>Share of Australians who drink coffee in an average week</td>
               <td><a href="https://www.roymorgan.com/findings/10068-thinknewsbrands-total-news-readership-media-release-september-2025">Roy Morgan Research</a>, quoted in its news readership release of 24 November 2025</td>
@@ -271,6 +305,7 @@
         <li><strong>Left out:</strong> the Central African Republic and Guinea are not shown in the production charts. Their reported coffee output jumps 5 to 30 times after 2015, which looks like an estimate, not a harvest.</li>
         <li><strong>Coffee years:</strong> the International Coffee Organization counts a coffee year from 1 October. Its figures are not the same as the calendar-year figures from the Food and Agriculture Organization. The Organization revises past years: the 2024/25 supply and demand figures here are from its September 2026 report and differ from its June 2026 report. The 2025/26 figures are estimates.</li>
         <li><strong>Prices:</strong> charts 10 to 12 describe the world market. They are not the price of a cup at an Australian café.</li>
+        <li><strong>Comparing world and Australian prices (chart 13):</strong> the two measures are not the same kind of number. The world figure is what a pound of green beans sold for; the Australian figures are price indexes for what households pay. They are put on the same scale by setting all three to 100 in October 2025, which shows the direction and size of each move, not the level. The Australian Bureau of Statistics measures &ldquo;coffee, tea and cocoa&rdquo; as one expenditure class and &ldquo;meals out and take away foods&rdquo; as another, so neither is the price of a cup of coffee on its own. The window is the 11 months where both sources overlap.</li>
         <li><strong>The 51% figure</strong> comes from a Roy Morgan survey of Australians aged 14 and over. It appears in a release about news readership, where coffee is used as a comparison. No other free, recent survey on coffee drinking in Australia was found.</li>
       </ul>
 

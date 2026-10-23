@@ -1,0 +1,485 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Cafés and restaurants by state and number of employees, June 2025",
+    "subtitle": "Column width shows each state's share of all businesses in Australia. Column height adds up to 100%"
+  },
+  "width": "container",
+  "height": 360,
+  "data": {
+    "url": "data/processed/au_cafes_restaurants_by_state.csv"
+  },
+  "transform": [
+    {
+      "calculate": "{'New South Wales':'NSW','Victoria':'VIC','Queensland':'QLD','South Australia':'SA','Western Australia':'WA','Tasmania':'TAS','Northern Territory':'NT','Australian Capital Territory':'ACT'}[datum.state_name]",
+      "as": "abbr"
+    },
+    {
+      "calculate": "toNumber(datum.total_businesses)",
+      "as": "state_total"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "state_total",
+          "as": "grand_total"
+        }
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "sum",
+          "field": "state_total",
+          "as": "cum_total"
+        }
+      ],
+      "sort": [
+        {
+          "field": "state_total",
+          "order": "descending"
+        }
+      ],
+      "frame": [
+        null,
+        0
+      ]
+    },
+    {
+      "calculate": "(datum.cum_total - datum.state_total) / datum.grand_total",
+      "as": "x0"
+    },
+    {
+      "calculate": "datum.cum_total / datum.grand_total",
+      "as": "x1"
+    },
+    {
+      "calculate": "(datum.x0 + datum.x1) / 2",
+      "as": "x_mid"
+    },
+    {
+      "calculate": "datum.state_total / datum.grand_total",
+      "as": "state_share"
+    },
+    {
+      "fold": [
+        "non_employing",
+        "employees_1_4",
+        "employees_5_19",
+        "employees_20_199",
+        "employees_200_plus"
+      ],
+      "as": [
+        "size_key",
+        "businesses"
+      ]
+    },
+    {
+      "calculate": "toNumber(datum.businesses)",
+      "as": "n"
+    },
+    {
+      "calculate": "datum.n / datum.state_total",
+      "as": "share"
+    },
+    {
+      "calculate": "{'non_employing':'None (owner only)','employees_1_4':'1 to 4','employees_5_19':'5 to 19','employees_20_199':'20 to 199','employees_200_plus':'200 or more'}[datum.size_key]",
+      "as": "size_label"
+    },
+    {
+      "calculate": "{'non_employing':0,'employees_1_4':1,'employees_5_19':2,'employees_20_199':3,'employees_200_plus':4}[datum.size_key]",
+      "as": "size_order"
+    },
+    {
+      "stack": "share",
+      "groupby": [
+        "state_name"
+      ],
+      "sort": [
+        {
+          "field": "size_order",
+          "order": "ascending"
+        }
+      ],
+      "as": [
+        "y0",
+        "y1"
+      ]
+    },
+    {
+      "calculate": "(datum.y0 + datum.y1) / 2",
+      "as": "y_mid"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "x0",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          1.24
+        ],
+        "nice": false
+      },
+      "axis": {
+        "title": "Share of all cafés and restaurants in Australia",
+        "values": [
+          0,
+          0.25,
+          0.5,
+          0.75,
+          1
+        ],
+        "format": "%",
+        "grid": false,
+        "domain": false,
+        "tickColor": "#C9BBA8"
+      }
+    },
+    "y": {
+      "field": "y0",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          1.08
+        ],
+        "nice": false
+      },
+      "axis": {
+        "title": "Share of the state's businesses",
+        "values": [
+          0,
+          0.25,
+          0.5,
+          0.75,
+          1
+        ],
+        "format": "%",
+        "grid": false,
+        "domain": false,
+        "ticks": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "Size_highlight",
+          "select": {
+            "type": "point",
+            "fields": [
+              "size_label"
+            ]
+          },
+          "bind": "legend"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "stroke": "#FAF6F0",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x2": {
+          "field": "x1"
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "color": {
+          "field": "size_label",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "None (owner only)",
+              "1 to 4",
+              "5 to 19",
+              "20 to 199",
+              "200 or more"
+            ],
+            "range": [
+              "#E0A76B",
+              "#B9C4CD",
+              "#8A9CAA",
+              "#5C7080",
+              "#33434F"
+            ]
+          },
+          "legend": {
+            "title": "Number of employees (click to highlight)",
+            "titleLimit": 320,
+            "orient": "bottom",
+            "direction": "horizontal",
+            "labelLimit": 200,
+            "symbolType": "square",
+            "symbolSize": 140
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "Size_highlight",
+            "value": 1
+          },
+          "value": 0.2
+        },
+        "tooltip": [
+          {
+            "field": "state_name",
+            "title": "State"
+          },
+          {
+            "field": "size_label",
+            "title": "Number of employees"
+          },
+          {
+            "field": "n",
+            "type": "quantitative",
+            "title": "Businesses",
+            "format": ","
+          },
+          {
+            "field": "share",
+            "type": "quantitative",
+            "title": "Share of the state's businesses",
+            "format": ".1%"
+          },
+          {
+            "field": "state_total",
+            "type": "quantitative",
+            "title": "All businesses in the state",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.state_share >= 0.05 && datum.share >= 0.08"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "x": {
+          "field": "x_mid",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y_mid",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "share",
+          "type": "quantitative",
+          "format": ".0%"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.size_order <= 2",
+            "value": "#2B1D13"
+          },
+          "value": "#FFFFFF"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.size_order === 0 && datum.state_share >= 0.05"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "baseline": "bottom",
+        "dy": -4,
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#2B1D13"
+      },
+      "encoding": {
+        "x": {
+          "field": "x_mid",
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 1
+        },
+        "text": {
+          "field": "abbr"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.size_order === 0 && datum.state_share < 0.05"
+        },
+        {
+          "calculate": "datum.abbr === 'NT' ? datum.x1 + 0.007 : datum.x_mid",
+          "as": "label_x"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "angle": 270,
+        "align": "left",
+        "baseline": "middle",
+        "dy": 0,
+        "dx": 4,
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#2B1D13"
+      },
+      "encoding": {
+        "x": {
+          "field": "label_x",
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 1
+        },
+        "text": {
+          "field": "abbr"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 1.025,
+            "y": 0.86
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12.5,
+        "fontWeight": 600,
+        "color": "#2B1D13",
+        "text": [
+          "NSW and VIC are the",
+          "widest columns: together",
+          "they have 66% of all",
+          "cafés and restaurants."
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 1.025,
+            "y": 0.42
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12.5,
+        "fontWeight": 600,
+        "color": "#2B1D13",
+        "text": [
+          "Victoria: 1 in 4 has no",
+          "employees. The owner",
+          "does the work."
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 1.025,
+            "y": 0.12
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12.5,
+        "fontWeight": 600,
+        "color": "#2B1D13",
+        "text": [
+          "Across Australia, 91%",
+          "have fewer than 20",
+          "employees."
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#2B1D13",
+      "subtitleFontSize": 12.5,
+      "subtitleColor": "#6B5847",
+      "subtitlePadding": 4
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleFontWeight": 600,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

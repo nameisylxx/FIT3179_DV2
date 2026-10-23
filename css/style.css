@@ -455,3 +455,32 @@ footer p {
   max-width: 420px;
   accent-color: var(--accent);
 }
+
+/* Scope note shown beside the charts it applies to, and a bridge between two
+   charts that are meant to be read as a pair. */
+.data-note {
+  margin: 0 0 var(--gap);
+  padding: 12px 16px;
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+}
+
+.bridge {
+  margin: 0 0 var(--gap);
+  padding: 0 0 0 16px;
+  border-left: 2px solid var(--line);
+  color: var(--ink-soft);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+.how mark {
+  background: var(--accent-soft);
+  color: var(--ink);
+  font-weight: 600;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
