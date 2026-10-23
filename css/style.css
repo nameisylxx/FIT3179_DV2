@@ -188,11 +188,16 @@ h3 {
 }
 
 .band-scope {
-  margin: 14px auto 0;
+  margin: 10px auto 0;
   max-width: 58ch;
-  font-size: 1rem;
-  line-height: 1.55;
+  font-size: 1.15rem;
+  line-height: 1.5;
   color: #cdbba8;
+}
+
+.band-scope strong {
+  color: #f6eee3;
+  font-weight: 600;
 }
 
 /* ---------- Sections ---------- */
@@ -267,8 +272,7 @@ h3 {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  min-height: 2.9em;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .fig-no,
@@ -298,9 +302,11 @@ h3 {
 }
 
 .tag {
-  margin-left: auto;
   color: var(--muted);
-  text-align: right;
+}
+
+.tag::before {
+  content: "·  ";
 }
 
 .insight {
@@ -341,6 +347,7 @@ h3 {
 }
 
 .links {
+  font-size: 0.8125rem;
   padding-top: 10px;
   border-top: 1px solid #efe6da;
 }
@@ -531,7 +538,7 @@ footer p {
    charts that are meant to be read as a pair. */
 .data-note {
   margin: 0 0 var(--gap);
-  padding: 12px 16px;
+  padding: 8px 14px;
   border-left: 4px solid var(--accent);
   background: var(--accent-soft);
   color: var(--ink-soft);

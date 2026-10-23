@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Coffee imported into Australia by country of origin, 2025"
+    "text": "Coffee imported from 22 coffee-growing countries, 2025"
   },
   "width": "container",
   "height": 470,
