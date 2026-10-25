@@ -14,6 +14,7 @@ const charts = [
   ['#chart_prices', 'charts/coffee_price_connected_scatter.vg.json'],
   ['#chart_species', 'charts/coffee_robusta_share_waffle.vg.json'],
   ['#chart_balance', 'charts/coffee_supply_demand_waterfall.vg.json'],
+  ['#chart_balance_years', 'charts/coffee_balance_by_year_bar.vg.json'],
   ['#chart_passthrough', 'charts/au_coffee_price_passthrough_line_chart.vg.json'],
 ];
 

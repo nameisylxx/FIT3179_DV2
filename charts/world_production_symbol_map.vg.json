@@ -244,7 +244,7 @@
           ]
         },
         {
-          "calculate": "split('In ' + Year_selection + ', the five biggest growers; produced ' + format(datum.top_five / datum.world_total, '.0%') + ' of the; coffee beans in this map.', ';')",
+          "calculate": "split('In ' + Year_selection + ', the five biggest growers; produced ' + format(datum.top_five / datum.world_total, '.0%') + ' of recorded; world production.', ';')",
           "as": "note"
         },
         {

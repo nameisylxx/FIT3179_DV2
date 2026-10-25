@@ -264,7 +264,7 @@
             "offset": 16
           },
           "text": {
-            "signal": "(datum.x1 - datum.x0) > 40 && (datum.y1 - datum.y0) > 30 ? datum.name : ''"
+            "signal": "(datum.x1 - datum.x0) > 40 && (datum.y1 - datum.y0) > 30 ? (datum.name === 'Central African Republic' ? ['Central', 'African', 'Republic'] : datum.name) : ''"
           },
           "limit": {
             "signal": "datum.x1 - datum.x0 - 2"
@@ -296,11 +296,10 @@
             "offset": 4
           },
           "y": {
-            "field": "y0",
-            "offset": 32
+            "signal": "datum.y0 + (datum.name === 'Central African Republic' ? 46 : 32)"
           },
           "text": {
-            "signal": "(datum.x1 - datum.x0) > 40 && (datum.y1 - datum.y0) > 46 ? format(datum.production_tonnes / 1000, ',.0f') : ''"
+            "signal": "(datum.x1 - datum.x0) > 40 && (datum.y1 - datum.y0) > 46 && datum.name !== 'Central African Republic' ? format(datum.production_tonnes / 1000, ',.0f') : ''"
           },
           "limit": {
             "signal": "datum.x1 - datum.x0 - 6"
@@ -334,8 +333,8 @@
           },
           "text": {
             "value": [
-              "Brazil and Vietnam together",
-              "grow half of the world's coffee."
+              "Brazil alone: almost a third",
+              "of recorded output."
             ]
           },
           "font": {

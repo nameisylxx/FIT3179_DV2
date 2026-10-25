@@ -123,6 +123,62 @@
     },
     {
       "mark": {
+        "type": "line",
+        "strokeWidth": 4.5,
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "yr",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              2023.45,
+              2025.55
+            ]
+          },
+          "axis": {
+            "values": [
+              2024,
+              2025
+            ],
+            "format": "d",
+            "title": null,
+            "grid": false,
+            "domain": false,
+            "ticks": false,
+            "labelFontSize": 13,
+            "labelFontWeight": 600,
+            "orient": "top"
+          }
+        },
+        "y": {
+          "field": "per_10k",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              8.5,
+              26.5
+            ]
+          },
+          "axis": null
+        },
+        "detail": {
+          "field": "state_name",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "#6E6357"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.abbr === 'VIC'"
+        }
+      ]
+    },
+    {
+      "mark": {
         "type": "circle",
         "size": 70,
         "opacity": 1

@@ -1,0 +1,242 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "12B · Grown minus drunk, million bags, each year"
+  },
+  "width": "container",
+  "height": 150,
+  "data": {
+    "url": "data/processed/coffee_world_supply_demand_balance.csv"
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(datum.balance)",
+      "as": "gap"
+    },
+    {
+      "calculate": "datum.gap < 0 ? 'Shortfall' : 'Surplus'",
+      "as": "result"
+    },
+    {
+      "calculate": "datum.coffee_year === '2025/26' ? '2025/26*' : datum.coffee_year",
+      "as": "year_label"
+    },
+    {
+      "calculate": "(datum.gap > 0 ? '+' : '') + format(datum.gap, '.1f')",
+      "as": "label"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year_label",
+      "type": "ordinal",
+      "sort": null,
+      "axis": {
+        "title": null,
+        "labelAngle": 0,
+        "ticks": false,
+        "domain": false,
+        "labelPadding": 8
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "width": {
+          "band": 0.55
+        },
+        "cornerRadius": 2
+      },
+      "encoding": {
+        "y": {
+          "field": "gap",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -10,
+              5
+            ]
+          },
+          "axis": {
+            "title": null,
+            "values": [
+              -10,
+              -5,
+              0,
+              5
+            ],
+            "grid": true,
+            "gridColor": "#EDE6DC",
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "color": {
+          "field": "result",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Shortfall",
+              "Surplus"
+            ],
+            "range": [
+              "#4A3B2E",
+              "#B3A89B"
+            ]
+          },
+          "legend": null
+        },
+        "stroke": {
+          "condition": {
+            "test": "datum.coffee_year === '2024/25'",
+            "value": "#C9733F"
+          },
+          "value": null
+        },
+        "strokeWidth": {
+          "value": 2
+        },
+        "tooltip": [
+          {
+            "field": "coffee_year",
+            "title": "Coffee year"
+          },
+          {
+            "field": "total_production",
+            "title": "Grown (million bags)"
+          },
+          {
+            "field": "consumption",
+            "title": "Drunk (million bags)"
+          },
+          {
+            "field": "gap",
+            "title": "Grown minus drunk",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 0
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#2B1D13",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "x": null
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#2B1D13",
+        "dy": -9
+      },
+      "encoding": {
+        "y": {
+          "field": "gap",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.gap >= 0"
+        }
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#2B1D13",
+        "dy": 11
+      },
+      "encoding": {
+        "y": {
+          "field": "gap",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.gap < 0"
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year_label": "2022/23",
+            "y": 4.2
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#4A3B2E",
+        "text": "Four shortfalls in a row"
+      },
+      "encoding": {
+        "x": {
+          "field": "year_label",
+          "type": "ordinal",
+          "bandPosition": 1
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+  "config": {
+    "background": null,
+    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "title": {
+      "fontSize": 14,
+      "fontWeight": 600,
+      "anchor": "start",
+      "color": "#2B1D13"
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#4A3B2E",
+      "titleColor": "#2B1D13"
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "labelColor": "#4A3B2E"
+    },
+    "view": {
+      "stroke": null
+    }
+  }
+}

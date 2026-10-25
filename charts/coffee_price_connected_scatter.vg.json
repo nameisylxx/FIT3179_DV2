@@ -4,7 +4,7 @@
     "text": "Wholesale price in US cents per pound, coffee year 2025/26"
   },
   "width": "container",
-  "height": 360,
+  "height": 420,
   "data": {
     "url": "data/processed/coffee_price_by_variety_monthly.csv"
   },
@@ -273,7 +273,7 @@
               12
             ],
             "range": [
-              "#C3CFDA",
+              "#8FA3B8",
               "#2F4A61"
             ]
           },

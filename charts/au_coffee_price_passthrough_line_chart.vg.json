@@ -4,7 +4,7 @@
     "text": "Price index, October 2025 = 100, monthly to August 2026"
   },
   "width": "container",
-  "height": 340,
+  "height": 445,
   "data": {
     "url": "data/processed/au_coffee_price_passthrough.csv"
   },
@@ -64,9 +64,9 @@
       "type": "nominal",
       "scale": {
         "domain": [
-          "World coffee bean price",
-          "Australian shop coffee",
-          "Australian meals out and take away"
+          "World coffee bean price (ICO)",
+          "Australian coffee, tea and cocoa CPI",
+          "Australian meals out and take away CPI"
         ],
         "range": [
           "#4F6A82",
@@ -109,7 +109,8 @@
         },
         "color": {
           "value": "#2B1D13"
-        }
+        },
+        "x": null
       }
     },
     {
@@ -145,7 +146,39 @@
             "field": "unit",
             "title": "Measured in"
           }
-        ]
+        ],
+        "strokeDash": {
+          "field": "series",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "World coffee bean price (ICO)",
+              "Australian coffee, tea and cocoa CPI",
+              "Australian meals out and take away CPI"
+            ],
+            "range": [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                7,
+                4
+              ]
+            ]
+          },
+          "legend": {
+            "title": null,
+            "orient": "top",
+            "direction": "vertical",
+            "symbolStrokeWidth": 3,
+            "labelLimit": 320
+          }
+        }
       }
     },
     {

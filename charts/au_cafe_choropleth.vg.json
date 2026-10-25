@@ -4,7 +4,7 @@
     "text": "Cafés and restaurants per 10,000 people, June 2025"
   },
   "width": "container",
-  "height": 400,
+  "height": 485,
   "padding": {
     "left": 5,
     "top": 5,
@@ -76,7 +76,7 @@
             ]
           },
           "legend": {
-            "title": "Per 10,000 people",
+            "title": "Darker = more per 10,000 residents",
             "orient": "bottom",
             "direction": "horizontal",
             "symbolType": "square",

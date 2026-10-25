@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "World coffee in 2024/25, million 60-kilogram bags"
+    "text": "12A · World coffee in 2024/25, million 60-kilogram bags"
   },
   "width": "container",
-  "height": 320,
+  "height": 260,
   "data": {
     "url": "data/processed/coffee_world_supply_demand_balance.csv"
   },
@@ -73,7 +73,7 @@
             "labelAngle": 0,
             "ticks": false,
             "domain": false,
-            "labelPadding": 8
+            "labelPadding": 26
           }
         },
         "y": {
@@ -156,7 +156,7 @@
     {
       "transform": [
         {
-          "filter": "datum.step !== 'Shortfall'"
+          "filter": "datum.step === 'Grown'"
         },
         {
           "calculate": "datum.step === 'Drunk' ? '−' + format(datum.value, '.1f') : format(datum.value, '.1f')",
@@ -186,6 +186,51 @@
         },
         "y": {
           "field": "top",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.step === 'Drunk'"
+        },
+        {
+          "calculate": "datum.step === 'Drunk' ? '−' + format(datum.value, '.1f') : format(datum.value, '.1f')",
+          "as": "label"
+        },
+        {
+          "calculate": "max(datum.start, datum.end)",
+          "as": "top"
+        },
+        {
+          "calculate": "(datum.start + datum.end) / 2",
+          "as": "middle"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": 0,
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#FFFFFF",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "field": "step",
+          "type": "ordinal",
+          "sort": [
+            "Grown",
+            "Drunk",
+            "Shortfall"
+          ]
+        },
+        "y": {
+          "field": "middle",
           "type": "quantitative"
         },
         "text": {
@@ -246,9 +291,9 @@
         "fontWeight": 600,
         "color": "#4A3B2E",
         "text": [
-          "Next year the ICO",
-          "expects a surplus of",
-          "3.0 million bags."
+          "The brown bar takes away",
+          "what was drunk. The part",
+          "below zero is the shortfall."
         ],
         "dx": -14
       },

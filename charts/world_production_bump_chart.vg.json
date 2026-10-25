@@ -1,16 +1,16 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Production rank among 76 coffee-growing countries"
+    "text": "Production rank among 78 coffee-growing countries"
   },
   "width": "container",
-  "height": 500,
+  "height": 560,
   "data": {
     "url": "data/processed/coffee_production_by_country.csv"
   },
   "transform": [
     {
-      "filter": "datum.production_tonnes !== '' && datum.iso3 !== 'CAF' && datum.iso3 !== 'GIN'"
+      "filter": "datum.production_tonnes !== ''"
     },
     {
       "calculate": "toNumber(datum.production_tonnes)",
@@ -266,7 +266,7 @@
         "values": [
           {
             "year": "2010",
-            "rank": 13.2
+            "rank": 14.6
           }
         ]
       },
@@ -280,7 +280,7 @@
         "dx": -20,
         "text": [
           "Mexico slipped from 3rd",
-          "to 11th place."
+          "to 12th place."
         ]
       },
       "encoding": {

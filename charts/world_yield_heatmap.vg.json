@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Tonnes per hectare, ten biggest growers, 2015 to 2024"
+    "text": "Tonnes per hectare, 2015 to 2024, for the ten largest producers of 2024"
   },
   "width": "container",
-  "height": 360,
+  "height": 480,
   "padding": {
     "left": 5,
     "top": 5,
@@ -16,7 +16,7 @@
   },
   "transform": [
     {
-      "filter": "indexof(['Vietnam','Brazil','Honduras','Colombia','Peru','India','Ethiopia','Indonesia','Guatemala','Uganda'], datum.country_name) >= 0"
+      "filter": "indexof(['Vietnam','Brazil','Honduras','Colombia','Peru','India','Ethiopia','Indonesia','Uganda','Central African Republic'], datum.country_name) >= 0"
     },
     {
       "filter": "datum.yield_tonnes_per_hectare !== '' && toNumber(datum.year) >= 2015"
@@ -59,15 +59,17 @@
             "India",
             "Ethiopia",
             "Indonesia",
-            "Guatemala",
-            "Uganda"
+            "Uganda",
+            "Central African Republic"
           ],
           "axis": {
             "title": null,
             "labelFontSize": 13,
             "labelFontWeight": 600,
             "domain": false,
-            "ticks": false
+            "ticks": false,
+            "labelExpr": "datum.label === 'Central African Republic' ? ['Central African', 'Republic'] : datum.label",
+            "labelLineHeight": 13
           }
         },
         "color": {
@@ -75,7 +77,7 @@
           "type": "quantitative",
           "scale": {
             "domain": [
-              0.4,
+              0.2,
               3.0
             ],
             "range": [
@@ -142,9 +144,13 @@
             "India",
             "Ethiopia",
             "Indonesia",
-            "Guatemala",
-            "Uganda"
-          ]
+            "Uganda",
+            "Central African Republic"
+          ],
+          "axis": {
+            "labelExpr": "datum.label === 'Central African Republic' ? ['Central African', 'Republic'] : datum.label",
+            "labelLineHeight": 13
+          }
         },
         "text": {
           "field": "yield_t_ha",
@@ -189,56 +195,13 @@
             "India",
             "Ethiopia",
             "Indonesia",
-            "Guatemala",
-            "Uganda"
-          ]
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "year": "2024",
-            "country_name": "Vietnam"
+            "Uganda",
+            "Central African Republic"
+          ],
+          "axis": {
+            "labelExpr": "datum.label === 'Central African Republic' ? ['Central African', 'Republic'] : datum.label",
+            "labelLineHeight": 13
           }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "top",
-        "dx": 38,
-        "dy": -10,
-        "fontSize": 13,
-        "fontWeight": 600,
-        "color": "#2B1D13",
-        "text": [
-          "Vietnam gets 3 tonnes",
-          "per hectare: over 4",
-          "times Ethiopia."
-        ]
-      },
-      "encoding": {
-        "x": {
-          "field": "year",
-          "type": "ordinal"
-        },
-        "y": {
-          "field": "country_name",
-          "type": "nominal",
-          "sort": [
-            "Vietnam",
-            "Brazil",
-            "Honduras",
-            "Colombia",
-            "Peru",
-            "India",
-            "Ethiopia",
-            "Indonesia",
-            "Guatemala",
-            "Uganda"
-          ]
         }
       }
     }

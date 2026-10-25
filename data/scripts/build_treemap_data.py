@@ -4,15 +4,15 @@ Input : data/processed/coffee_production_latest_with_coordinates.csv  (FAO via O
         data/raw/country_centroids_dr5hn.csv                          (UN region / subregion per country)
 Output: one row per tree node (root, 4 regions, country tiles + one "Other" tile per region).
 
-Central African Republic and Guinea are left out: their FAO series jump 5x-30x after 2015
-(for example CAR 9,050 t in 2015 to 289,283 t in 2020), which looks like estimation rather than harvests.
+All countries are kept as FAO publishes them. (The Central African Republic and Guinea rise sharply
+after 2015; the page notes this rather than dropping them.)
 Countries below MIN_TONNES are combined into an "Other" tile inside their region.
 """
 import csv, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 MIN_TONNES = 300_000
-EXCLUDE = {"CAF", "GIN"}
+EXCLUDE = set()   # all FAO countries are shown as published
 
 centroids = {r["iso3"]: r for r in csv.DictReader(open(f"{ROOT}/data/raw/country_centroids_dr5hn.csv", encoding="utf-8"))}
 

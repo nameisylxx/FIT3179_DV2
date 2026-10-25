@@ -78,7 +78,7 @@ h3 {
   --reveal: 1;
   --stage: min(100vh, 900px);
   position: relative;
-  height: calc(var(--stage) + min(90vh, 800px));
+  height: calc(var(--stage) + min(45vh, 420px));
 }
 
 .scroll-hero-stage {
@@ -219,7 +219,9 @@ h3 {
 .section-icon {
   align-self: end;
   height: 56px;
+  max-width: 104px;
   width: auto;
+  object-fit: contain;
   margin-bottom: -2px;
 }
 
@@ -562,4 +564,269 @@ footer p {
   font-weight: 600;
   padding: 1px 4px;
   border-radius: 3px;
+}
+
+/* the last line of a section points to the next one */
+.transition {
+  margin: 8px 0 0;
+  max-width: 62ch;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.transition::before {
+  content: "\2192\00a0 ";
+  color: var(--accent);
+}
+
+/* a second view in the same figure */
+.chart-second {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid #efe6da;
+}
+
+/* ---------- story structure: route map, key figures, the answer ---------- */
+.route {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin: 40px 0 8px;
+}
+
+.stop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 20px 14px;
+  text-align: center;
+  text-decoration: none;
+  background: #fffdf9;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(43, 29, 19, 0.04), 0 10px 28px rgba(43, 29, 19, 0.06);
+}
+
+.stop img {
+  height: 60px;
+  max-width: 112px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+.stop-no {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.stop-q {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.standfirst strong {
+  color: var(--ink);
+}
+
+.keyfig {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin: 12px 0 4px;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.keyfig-num {
+  flex: 0 0 auto;
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.keyfig p {
+  margin: 0;
+  max-width: 52ch;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.answer {
+  max-width: 64ch;
+  margin: 72px 0 32px;
+}
+
+.answer h2 {
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  margin-bottom: 14px;
+}
+
+.answer p {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 960px) {
+  .route { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* section 1: the one finding the two charts share */
+.connection {
+  max-width: 68ch;
+  margin: 4px 0 var(--gap);
+  padding: 4px 0 4px 18px;
+  border-left: 4px solid var(--accent);
+}
+
+.connection p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+/* ---------- readable line breaks, captions, section endings ---------- */
+p, li, h2, h3 { text-wrap: pretty; }
+.insight, .answer h2, .connection p { text-wrap: balance; }
+
+.how {
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.how mark { font-style: normal; }
+
+.section-end {
+  margin: 8px 0 0;
+}
+
+.section-end .keyfig {
+  display: grid;
+  grid-template-columns: minmax(150px, auto) 1fr;
+  align-items: center;
+  gap: 28px;
+  margin: 0;
+  padding: 26px 32px;
+  background: #fffdf9;
+  border: 0;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(43, 29, 19, 0.04), 0 10px 28px rgba(43, 29, 19, 0.06);
+}
+
+.section-end .keyfig-num {
+  font-size: 3.4rem;
+  text-align: center;
+}
+
+.section-end .keyfig .kicker { margin-bottom: 6px; }
+
+.section-end .keyfig p {
+  max-width: 58ch;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.section-end .transition {
+  display: block;
+  max-width: none;
+  margin: 18px 0 0;
+  text-align: right;
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+
+.section-end .transition::before { content: none; }
+
+/* two charts side by side start at the same height:
+   the headline and the lede each keep two lines of space, the chart keeps its own height,
+   and the source line sits at the bottom of the card */
+.chart { flex: 0 0 auto; }
+.links { margin-top: auto; }
+.how { margin-bottom: 12px; }
+
+/* ---------- side text beside a chart (studio-style text + chart pair) ---------- */
+.side-text {
+  align-self: start;
+  max-width: 40ch;
+  padding: 112px 8px 0;
+}
+
+.side-text h3 {
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.side-text p {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* the heatmap spans the row, but its cells keep a sensible shape */
+/* a wide card whose headline, chart and captions sit together in one centred column */
+.narrow-group {
+  padding-left: max(30px, calc((100% - 820px) / 2));
+  padding-right: max(30px, calc((100% - 820px) / 2));
+}
+
+.chart-note {
+  margin: 6px 0 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* route map: section names only */
+.stop-no {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+}
+
+/* ending: conclusion beside the cup */
+.ending {
+  margin-top: 64px;
+  align-items: center;
+}
+
+.ending-text h2 {
+  margin-bottom: 14px;
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+}
+
+.ending-text p {
+  margin: 0 0 12px;
+  max-width: 52ch;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.chart-note.between {
+  margin: 18px 0 0;
 }

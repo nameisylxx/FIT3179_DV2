@@ -53,19 +53,19 @@
       "labelPadding": 6
     }
   },
-  "columns": 3,
+  "columns": 6,
   "spacing": {
     "row": 14,
     "column": 22
   },
   "spec": {
-    "width": 128,
-    "height": 168,
+    "width": 150,
+    "height": 197,
     "layer": [
       {
         "mark": {
           "type": "square",
-          "size": 120,
+          "size": 170,
           "opacity": 1
         },
         "encoding": {
