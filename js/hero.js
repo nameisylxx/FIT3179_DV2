@@ -8,6 +8,15 @@
   var queued = false;
   var START = 0;   // share of the picture already showing at the top of the page
 
+  // Screenshot mode (index.html?screenshot): no animation, the full engraving shows at once.
+  if (/[?&#]screenshot\b/.test(location.search + location.hash)) {
+    document.documentElement.classList.add('screenshot-mode');
+    hero.style.setProperty('--reveal', '1');
+    return;
+  }
+  // Printing to PDF also shows the full engraving.
+  window.addEventListener('beforeprint', function () { hero.style.setProperty('--reveal', '1'); });
+
   function update() {
     queued = false;
     var travel = hero.offsetHeight - stage.offsetHeight;

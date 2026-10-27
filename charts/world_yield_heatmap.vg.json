@@ -1,7 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Tonnes per hectare, 2015 to 2024, for the ten largest producers of 2024"
+    "text": "Tonnes per hectare, 2015 to 2024, for the ten largest producers of 2024",
+    "subtitle": [
+      "In 2024, Vietnam (solid outline) grew 3.0 tonnes per hectare,",
+      "over four times Ethiopia’s 0.7 (dashed outline)."
+    ],
+    "subtitleFontWeight": 600,
+    "subtitleColor": "#4A3B2E"
   },
   "width": "container",
   "height": 480,
@@ -177,6 +183,49 @@
         "fill": null,
         "stroke": "#2B1D13",
         "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "country_name",
+          "type": "nominal",
+          "sort": [
+            "Vietnam",
+            "Brazil",
+            "Honduras",
+            "Colombia",
+            "Peru",
+            "India",
+            "Ethiopia",
+            "Indonesia",
+            "Uganda",
+            "Central African Republic"
+          ],
+          "axis": {
+            "labelExpr": "datum.label === 'Central African Republic' ? ['Central African', 'Republic'] : datum.label",
+            "labelLineHeight": 13
+          }
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.country_name === 'Ethiopia'"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": null,
+        "stroke": "#2B1D13",
+        "strokeWidth": 2,
+        "strokeDash": [
+          5,
+          3
+        ]
       },
       "encoding": {
         "x": {

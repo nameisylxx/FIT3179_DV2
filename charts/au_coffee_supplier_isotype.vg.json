@@ -143,7 +143,7 @@
           {
             "field": "sacks",
             "type": "quantitative",
-            "title": "Sacks shown (one sack = 2,000 tonnes)"
+            "title": "Sacks shown (one sack = 1,000 tonnes)"
           }
         ]
       }

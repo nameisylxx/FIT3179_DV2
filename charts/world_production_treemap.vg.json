@@ -110,7 +110,7 @@
         2500000
       ],
       "range": [
-        "#EFE4D6",
+        "#E3D3BD",
         "#D2B796",
         "#A9825A",
         "#6F4A2F",
@@ -299,10 +299,10 @@
             "offset": 4
           },
           "y": {
-            "signal": "datum.y0 + (datum.name === 'Central African Republic' ? 46 : 32)"
+            "signal": "datum.y0 + (datum.name === 'Central African Republic' ? 60 : 32)"
           },
           "text": {
-            "signal": "(datum.x1 - datum.x0) > 40 && (datum.y1 - datum.y0) > 46 && datum.name !== 'Central African Republic' ? format(datum.production_tonnes / 1000, ',.0f') : ''"
+            "signal": "(datum.x1 - datum.x0) > 40 && (datum.y1 - datum.y0) > (datum.name === 'Central African Republic' ? 70 : 46) ? format(datum.production_tonnes / 1000, ',.0f') : ''"
           },
           "limit": {
             "signal": "datum.x1 - datum.x0 - 6"
@@ -315,6 +315,50 @@
           },
           "fill": {
             "signal": "datum.production_tonnes >= 1000000 ? '#FFFFFF' : '#1F1610'"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "leaves"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "(datum.x0 + datum.x1) / 2"
+          },
+          "y": {
+            "field": "y1",
+            "offset": -4
+          },
+          "angle": {
+            "value": -90
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "text": {
+            "signal": "(datum.x1 - datum.x0) <= 40 && (datum.x1 - datum.x0) >= 14 && (datum.y1 - datum.y0) > 40 ? datum.name + ' ' + format(datum.production_tonnes / 1000, ',.0f') : ''"
+          },
+          "limit": {
+            "signal": "datum.y1 - datum.y0 - 6"
+          },
+          "font": {
+            "value": "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fontWeight": {
+            "value": 600
+          },
+          "fill": {
+            "value": "#1F1610"
           }
         }
       }

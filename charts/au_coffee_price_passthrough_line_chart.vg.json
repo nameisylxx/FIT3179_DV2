@@ -134,7 +134,7 @@
           },
           {
             "field": "idx",
-            "title": "Index (Oct 2025 = 100)",
+            "title": "Index (October 2025 = 100)",
             "format": ".1f"
           },
           {
@@ -205,6 +205,14 @@
         "y": {
           "field": "idx",
           "type": "quantitative"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.series === 'Australian meals out and takeaway prices'",
+            "value": "#9C4F24"
+          },
+          "field": "series",
+          "type": "nominal"
         }
       }
     },

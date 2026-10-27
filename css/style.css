@@ -509,7 +509,7 @@ footer p {
 
 /* ---------- Smaller screens ---------- */
 
-@media (max-width: 960px) {
+@media screen and (max-width: 960px) {
   .span-7,
   .span-6,
   .span-5 {
@@ -682,7 +682,7 @@ footer p {
   color: var(--ink-soft);
 }
 
-@media (max-width: 960px) {
+@media screen and (max-width: 960px) {
   .route { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
@@ -1079,3 +1079,49 @@ h1, h2, h3, .insight { letter-spacing: -0.01em; }
 .section-head.has-scene .head-intro { grid-row: 4; margin-top: 14px; margin-bottom: 36px; }
 .section-head.has-scene .section-scene { grid-row: 1 / span 4; }
 .section-head .section-scene { max-width: 500px; }
+
+/* every scene sits the same 10px above the section rule */
+.section-head.has-scene .section-scene { margin-bottom: 10px; }
+
+/* the six waffles are narrower than the full-width card, so centre them */
+#chart_species { display: flex; justify-content: center; }
+
+/* Good to know: two columns so the notes use the full width */
+.notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; row-gap: 6px; max-width: none; padding-left: 0; }
+.notes li { max-width: none; margin-left: 1.2em; }
+@media (max-width: 760px) { .notes { grid-template-columns: 1fr; } }
+
+/* the question gets its own line; the lead wraps into two even lines */
+.band-scope strong { display: block; margin-top: 10px; font-size: 1.55rem; }
+.band-lead { text-wrap: balance; }
+
+/* readable sizes: body text 17px, captions and notes 16px, source lines 14px */
+.lede { font-size: var(--fs-body); }
+.how, .data-note, .chart-note, .chart-note.between, td, th, footer p { font-size: 1rem; }
+.links { font-size: 0.875rem; }
+
+/* labels: big enough to read at a glance */
+.kicker { font-size: 0.95rem; }
+.section-head .section-no { font-size: 1rem; font-weight: 600; }
+.fig-no, .tag, .scroll-cue { font-size: 0.875rem; }
+
+/* screenshot mode (index.html?screenshot) and print: the full engraving, no scroll animation */
+.screenshot-mode .scroll-hero { height: auto; }
+.screenshot-mode .scroll-hero-stage { position: static; height: auto; padding-bottom: 24px; }
+.screenshot-mode .scroll-hero-art { height: auto; width: min(1100px, 94vw); }
+.screenshot-mode .scroll-cue { display: none; }
+.screenshot-mode .scroll-hero-copy { animation: none; }
+
+@media print {
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .scroll-hero { height: auto; }
+  .scroll-hero-stage { position: static; height: auto; padding-bottom: 24px; }
+  .scroll-hero-art { height: auto; width: min(1100px, 94vw); }
+  .scroll-cue { display: none; }
+  .scroll-hero-copy { animation: none; }
+  /* keep each figure, section opening and the band on one page */
+  .card, .row, .section-head, .band, .stop, .notes li, tr { break-inside: avoid; }
+  .section-head { break-after: avoid; }
+}
+/* print at desktop width, so the PDF looks like the website */
+@page { size: 1366px 1300px; margin: 28px 0; }
