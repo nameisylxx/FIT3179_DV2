@@ -92,7 +92,7 @@
               "Other"
             ],
             "range": [
-              "#5F7D4C",
+              "#6F4A2F",
               "#2B1D13",
               "#968B7E"
             ]
@@ -242,7 +242,7 @@
         "baseline": "middle",
         "fontSize": 13,
         "fontWeight": 600,
-        "color": "#3F5A31",
+        "color": "#4A2F1C",
         "dx": 14,
         "text": [
           "Vietnam jumped from 17th to 2nd",
@@ -297,7 +297,7 @@
   ],
   "config": {
     "background": null,
-    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "font": "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
     "title": {
       "fontSize": 14,
       "fontWeight": 600,

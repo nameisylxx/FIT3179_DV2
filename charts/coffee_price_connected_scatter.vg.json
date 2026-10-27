@@ -157,7 +157,7 @@
     {
       "mark": {
         "type": "line",
-        "color": "#8C9AA8",
+        "color": "#B3A89B",
         "strokeWidth": 2,
         "opacity": 0.75,
         "interpolate": "linear"
@@ -273,8 +273,8 @@
               12
             ],
             "range": [
-              "#8FA3B8",
-              "#2F4A61"
+              "#A88D72",
+              "#3B2A20"
             ]
           },
           "legend": null
@@ -567,7 +567,7 @@
   ],
   "config": {
     "background": null,
-    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "font": "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
     "title": {
       "fontSize": 14,
       "fontWeight": 600,

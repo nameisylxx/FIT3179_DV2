@@ -12,8 +12,9 @@
   --accent: #9c4420;
   --accent-soft: #f6e3d5;
 
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Archivo Narrow", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
 
   --fs-body: 1.0625rem;
   --fs-small: 0.9375rem;
@@ -113,7 +114,7 @@ h3 {
 
 .scroll-hero-art {
   display: block;
-  height: min(calc(var(--stage) - 270px), calc(min(1100px, 94vw) / 1.5));
+  height: min(calc(var(--stage) - 215px), calc(min(1240px, 96vw) / 1.5));
   width: auto;
   margin-top: clamp(16px, 3vh, 36px);
   --s: calc(0.08 + 0.92 * var(--reveal));
@@ -704,7 +705,7 @@ footer p {
 
 /* ---------- readable line breaks, captions, section endings ---------- */
 p, li, h2, h3 { text-wrap: pretty; }
-.insight, .answer h2, .connection p { text-wrap: balance; }
+.insight, .answer h2, .connection p { text-wrap: pretty; }
 
 .how {
   font-size: 0.875rem;
@@ -830,3 +831,251 @@ p, li, h2, h3 { text-wrap: pretty; }
 .chart-note.between {
   margin: 18px 0 0;
 }
+
+/* ---------- type: condensed sans headings, Plex body, Plex Mono labels ---------- */
+h1, h2, h3, .insight { letter-spacing: -0.01em; }
+.kicker, .fig-no, .tag, .stop-no, .section-no, .band-number, .keyfig-num {
+  font-family: var(--font-mono);
+}
+.kicker, .fig-no, .tag { letter-spacing: 0.08em; }
+.stop-no {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.section-no { font-weight: 600; letter-spacing: -0.04em; }
+.band-number { font-weight: 600; letter-spacing: -0.06em; }
+
+/* headline width in em, so a condensed font does not shrink it */
+.card .insight { max-width: 100%; }
+.card.span-12 .insight { max-width: 32em; }
+.card .insight { font-size: 1.6rem; }
+
+/* ---------- archive look: square corners, thin rules, no shadows ---------- */
+.card, .stop {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+/* LOT numbers: monospace label beside the section title */
+.section-no {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  line-height: 1;
+  padding: 0;
+  border: 0;
+}
+
+/* section heading: a small label above one main title, icon on the right */
+.section-head {
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  row-gap: 6px;
+  align-items: end;
+}
+.section-head .section-no {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.section-head h2 { grid-column: 1; grid-row: 2; }
+.section-head .section-icon { grid-column: 2; grid-row: 1 / span 2; }
+
+.ending-line {
+  margin-top: 18px !important;
+  font-family: var(--font-display);
+  font-size: 1.35rem !important;
+  font-weight: 600;
+  line-height: 1.35 !important;
+  color: var(--ink) !important;
+}
+
+/* small labels no smaller than 12.8px */
+.kicker, .fig-no, .tag, .scroll-cue { font-size: 0.8rem; }
+
+/* DV1 feedback: keep lines to about 12 words */
+.standfirst, .ending-text p { max-width: 58ch; }
+.lede, .how, .chart-note { max-width: 54ch; }
+.data-note { max-width: 62ch; }
+.notes li { max-width: 60ch; }
+.band-scope { max-width: 48ch; }
+.card.span-12 .insight { max-width: 25em; }
+.standfirst, .ending-text p { max-width: 50ch; }
+.lede, .how { max-width: 47ch; }
+.notes li { max-width: 52ch; }
+
+/* wide areas: larger text instead of a narrow column, so lines stay about 12 words */
+.standfirst { font-size: 1.3rem; line-height: 1.5; }
+.card.span-12 .lede { font-size: 1.15rem; line-height: 1.55; }
+.card.span-12 .how, .card.span-12 .chart-note, .card.span-12 .data-note { font-size: 1.02rem; }
+.ending-text p { font-size: 1.25rem; }
+
+/* full-width cards: headline left, lede right, so short lines still fill the width */
+.card.span-12 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 48px;
+  align-content: start;
+}
+.card.span-12 > * { grid-column: 1 / -1; }
+.card.span-12 > .insight { grid-column: 1; grid-row: 2; max-width: none; margin-bottom: 20px; }
+.card.span-12 > .lede {
+  grid-column: 2; grid-row: 2;
+  align-self: start;
+  max-width: none;
+  margin: 4px 0 20px;
+  padding-left: 20px;
+  border-left: 2px solid var(--line);
+}
+.card.span-12 > .how { max-width: 72ch; font-size: 0.95rem; }
+.card.span-12 > .how { grid-column: 1; max-width: none; font-size: 0.95rem; }
+.card.span-12 > .chart-note, .card.span-12 > .data-note { grid-column: 2; max-width: none; align-self: start; margin-top: 12px; }
+.card.span-12 > .how { font-size: 1.05rem; }
+
+/* section heading: label and title on the left, intro on the right, icon at the end */
+.section-head {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) auto;
+  grid-template-rows: auto auto;
+  column-gap: 40px;
+  align-items: end;
+}
+.section-head .section-no { grid-column: 1; grid-row: 1; }
+.section-head h2 { grid-column: 1; grid-row: 2; }
+.section-head .head-intro {
+  grid-column: 2; grid-row: 1 / span 2;
+  align-self: end;
+  margin: 0;
+  max-width: none;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+.section-head .section-icon { grid-column: 3; grid-row: 1 / span 2; }
+.section-head + * { margin-top: 24px; }
+.section-head { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) auto; }
+.section-head h2 { text-wrap: wrap; }
+.section-head { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) 104px; }
+.section-head .section-icon { justify-self: end; }
+
+/* section header: label sits right above the title; intro starts level with the title */
+.section-head {
+  grid-template-rows: auto auto;
+  row-gap: 8px;
+  align-items: start;
+}
+.section-head .section-no { grid-column: 1; grid-row: 1; align-self: end; }
+.section-head h2 { grid-column: 1; grid-row: 2; align-self: start; }
+.section-head .head-intro { grid-column: 2; grid-row: 2; align-self: start; padding-top: 4px; }
+.section-head .section-icon { grid-column: 3; grid-row: 1 / span 2; align-self: end; }
+
+/* section header option A: icon at the top right, level with the label */
+.section-head .section-icon { grid-row: 1 / span 2; align-self: start; margin-top: -4px; }
+
+/* section header option B: label, title and intro stacked; icon on the right */
+.section-head {
+  grid-template-columns: minmax(0, 1fr) 104px;
+  grid-template-rows: auto auto auto;
+  row-gap: 8px;
+  align-items: start;
+}
+.section-head .section-no { grid-column: 1; grid-row: 1; }
+.section-head h2 { grid-column: 1; grid-row: 2; }
+.section-head .head-intro {
+  grid-column: 1; grid-row: 3;
+  max-width: 58ch;
+  margin: 10px 0 20px;
+  padding: 0;
+  font-size: 1.15rem;
+  line-height: 1.55;
+}
+.section-head .section-icon {
+  grid-column: 2; grid-row: 1 / span 2;
+  align-self: center;
+  margin: 0;
+}
+.section-head .head-intro { max-width: 50ch; }
+
+/* section intros: one sentence or phrase per line, so breaks stay put at any width */
+.section-head .head-intro { max-width: 62ch; }
+.section-head .head-intro span { display: block; }
+.section-head .head-intro { max-width: 72ch; }
+
+/* section header illustrations: larger, so detailed scenes stay readable */
+.section-head { grid-template-columns: minmax(0, 1fr) 180px; }
+.section-head .section-icon { height: 96px; max-width: 180px; width: auto; object-fit: contain; justify-self: end; }
+.section-head .section-icon { grid-row: 1 / span 3; align-self: center; }
+
+/* large illustration between sections: farm (top) -> port (middle) -> cup (end) */
+.interlude {
+  margin: 56px auto 8px;
+  max-width: 760px;
+  text-align: center;
+}
+.interlude img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* section header: label, title, intro paragraph; no side icon */
+.section-head { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+.section-head .section-no { margin-bottom: 8px; }
+.section-head .head-intro {
+  grid-column: 1; grid-row: 3;
+  max-width: 64ch;
+  margin: 14px 0 24px;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.section-head .head-intro { max-width: 55ch; }
+
+/* port illustration: a small centred hint of the trade journey, under the section intro */
+.interlude {
+  margin: 4px auto 28px;
+  max-width: none;
+  text-align: center;
+}
+.interlude img {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  max-height: 210px;
+  max-width: 46%;
+}
+
+/* small illustration on the right of each section heading */
+.section-head { grid-template-columns: minmax(0, 1fr) 120px; }
+.section-head .section-icon {
+  grid-column: 2; grid-row: 1 / span 3;
+  align-self: center; justify-self: end;
+  height: 72px; max-width: 120px; width: auto; object-fit: contain;
+}
+
+/* section 2: a wide scene on the right of the heading, resting on the rule */
+.section-head.has-scene {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  column-gap: 24px;
+  padding-bottom: 0;
+}
+.section-head.has-scene .section-no { align-self: end; padding-top: 24px; }
+.section-head.has-scene .head-intro { margin-bottom: 28px; }
+.section-head .section-scene {
+  grid-column: 2; grid-row: 1 / span 3;
+  align-self: end; justify-self: end;
+  width: 100%; max-width: 470px; height: auto;
+  margin-bottom: -2px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14%);
+          mask-image: linear-gradient(to right, transparent 0, #000 14%);
+}
+.section-head.has-scene { grid-template-rows: 1fr auto auto auto; row-gap: 0; }
+.section-head.has-scene .section-no { grid-row: 2; padding-top: 0; margin-bottom: 8px; }
+.section-head.has-scene h2 { grid-row: 3; }
+.section-head.has-scene .head-intro { grid-row: 4; margin-top: 14px; margin-bottom: 36px; }
+.section-head.has-scene .section-scene { grid-row: 1 / span 4; }
+.section-head .section-scene { max-width: 500px; }

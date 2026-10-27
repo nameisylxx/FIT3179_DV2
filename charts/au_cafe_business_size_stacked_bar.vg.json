@@ -97,7 +97,7 @@
   ],
   "config": {
     "background": null,
-    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "font": "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
     "title": {"fontSize": 14, "fontWeight": 600, "anchor": "start", "color": "#2B1D13", "subtitleFontSize": 12.5, "subtitleColor": "#6B5847", "subtitlePadding": 4},
     "axis": {"labelFontSize": 12, "titleFontSize": 12, "titleFontWeight": 600, "labelColor": "#4A3B2E", "titleColor": "#2B1D13"},
     "legend": {"labelFontSize": 12, "titleFontSize": 12, "titleFontWeight": 600, "labelColor": "#4A3B2E", "titleColor": "#2B1D13"},

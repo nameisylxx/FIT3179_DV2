@@ -81,11 +81,11 @@
               3.0
             ],
             "range": [
-              "#E6F0EE",
-              "#B3D2CD",
-              "#76A69F",
-              "#3F756D",
-              "#22504A"
+              "#F3EBDD",
+              "#DCC6A6",
+              "#B9966A",
+              "#86643F",
+              "#4F3A24"
             ]
           },
           "legend": {
@@ -159,7 +159,7 @@
         },
         "color": {
           "condition": {
-            "test": "datum.yield_t_ha > 2.2",
+            "test": "datum.yield_t_ha > 1.85",
             "value": "#FFFFFF"
           },
           "value": "#2B1D13"
@@ -208,7 +208,7 @@
   ],
   "config": {
     "background": null,
-    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "font": "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
     "title": {
       "fontSize": 14,
       "fontWeight": 600,

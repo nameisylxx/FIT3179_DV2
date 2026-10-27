@@ -64,12 +64,12 @@
       "type": "nominal",
       "scale": {
         "domain": [
-          "World coffee bean price (ICO)",
-          "Australian coffee, tea and cocoa CPI",
-          "Australian meals out and take away CPI"
+          "World coffee bean price",
+          "Australian coffee, tea and cocoa prices",
+          "Australian meals out and takeaway prices"
         ],
         "range": [
-          "#4F6A82",
+          "#3B2A20",
           "#A9562F",
           "#C9733F"
         ]
@@ -152,9 +152,9 @@
           "type": "nominal",
           "scale": {
             "domain": [
-              "World coffee bean price (ICO)",
-              "Australian coffee, tea and cocoa CPI",
-              "Australian meals out and take away CPI"
+              "World coffee bean price",
+              "Australian coffee, tea and cocoa prices",
+              "Australian meals out and takeaway prices"
             ],
             "range": [
               [
@@ -237,14 +237,14 @@
           "type": "quantitative"
         },
         "color": {
-          "value": "#4F6A82"
+          "value": "#3B2A20"
         }
       }
     }
   ],
   "config": {
     "background": null,
-    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "font": "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
     "title": {
       "fontSize": 14,
       "fontWeight": 600,

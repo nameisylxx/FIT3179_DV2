@@ -4,7 +4,7 @@
     "text": "Cafés and restaurants per 10,000 people, June 2025"
   },
   "width": "container",
-  "height": 485,
+  "height": 509,
   "padding": {
     "left": 5,
     "top": 5,
@@ -76,12 +76,13 @@
             ]
           },
           "legend": {
-            "title": "Darker = more per 10,000 residents",
+            "title": "Businesses per 10,000 people (darker = more)",
             "orient": "bottom",
             "direction": "horizontal",
             "symbolType": "square",
             "symbolSize": 150,
-            "offset": 6
+            "offset": 6,
+            "titleLimit": 400
           }
         },
         "tooltip": [
@@ -304,7 +305,7 @@
   ],
   "config": {
     "background": null,
-    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "font": "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
     "title": {
       "fontSize": 14,
       "fontWeight": 600,

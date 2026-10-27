@@ -23,9 +23,9 @@ OUT = f"{ROOT}/data/processed/au_coffee_price_passthrough.csv"
 
 COL_COFFEE, COL_MEALS = 30, 32
 SERIES = [
-    ("World coffee bean price (ICO)", "world", "US cents per pound (ICO composite)"),
-    ("Australian coffee, tea and cocoa CPI", "shop", "CPI index, coffee tea and cocoa"),
-    ("Australian meals out and take away CPI", "meals", "CPI index, meals out and take away foods"),
+    ("World coffee bean price", "world", "US cents per pound (ICO composite)"),
+    ("Australian coffee, tea and cocoa prices", "shop", "CPI index, coffee tea and cocoa"),
+    ("Australian meals out and takeaway prices", "meals", "CPI index, meals out and take away foods"),
 ]
 
 wb = openpyxl.load_workbook(ABS_XLSX, read_only=True, data_only=True)

@@ -16,7 +16,7 @@
       "as": "robusta_squares"
     },
     {
-      "calculate": "datum.coffee_year + ': ' + format(datum.robusta_share, '.1f') + '%'",
+      "calculate": "datum.coffee_year + (datum.coffee_year === '2025/26' ? '*' : '') + ': ' + format(datum.robusta_share, '.1f') + '%'",
       "as": "panel"
     },
     {
@@ -37,7 +37,7 @@
       "as": "row"
     },
     {
-      "calculate": "datum.square < 41 && datum.square < datum.robusta_squares ? 'Robusta' : datum.square < datum.robusta_squares ? 'Robusta above the 2020/21 level' : 'Arabica'",
+      "calculate": "datum.square < 41 && datum.square < datum.robusta_squares ? 'Robusta' : datum.square < datum.robusta_squares ? 'Increase above the 2020/21 baseline' : 'Arabica'",
       "as": "species"
     }
   ],
@@ -56,16 +56,16 @@
   "columns": 6,
   "spacing": {
     "row": 14,
-    "column": 22
+    "column": 18
   },
   "spec": {
-    "width": 150,
-    "height": 197,
+    "width": 118,
+    "height": 155,
     "layer": [
       {
         "mark": {
           "type": "square",
-          "size": 170,
+          "size": 120,
           "opacity": 1
         },
         "encoding": {
@@ -97,13 +97,13 @@
             "scale": {
               "domain": [
                 "Robusta",
-                "Robusta above the 2020/21 level",
+                "Increase above the 2020/21 baseline",
                 "Arabica"
               ],
               "range": [
-                "#A8607F",
-                "#5E2F47",
-                "#E6DED3"
+                "#A27A55",
+                "#2B1D13",
+                "#CBC3B6"
               ]
             },
             "legend": {
@@ -164,7 +164,7 @@
           "lineBreak": "|",
           "fontSize": 12,
           "fontWeight": 600,
-          "color": "#5E2F47"
+          "color": "#3B2A20"
         },
         "encoding": {
           "x": {
@@ -184,7 +184,7 @@
   },
   "config": {
     "background": null,
-    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "font": "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
     "title": {
       "fontSize": 14,
       "fontWeight": 600,

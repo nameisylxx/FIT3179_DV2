@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "12B · Grown minus drunk, million bags, each year"
+    "text": "12B · Production minus consumption, million bags, each year"
   },
   "width": "container",
   "height": 150,
@@ -82,8 +82,8 @@
               "Surplus"
             ],
             "range": [
-              "#4A3B2E",
-              "#B3A89B"
+              "#2B1D13",
+              "#D8D3CA"
             ]
           },
           "legend": null
@@ -218,7 +218,7 @@
   ],
   "config": {
     "background": null,
-    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "font": "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
     "title": {
       "fontSize": 14,
       "fontWeight": 600,

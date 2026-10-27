@@ -6,6 +6,7 @@
   var stage = hero.querySelector('.scroll-hero-stage');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var queued = false;
+  var START = 0;   // share of the picture already showing at the top of the page
 
   function update() {
     queued = false;
@@ -19,14 +20,14 @@
       p = Math.min(1, Math.max(0, p));
       p = 1 - Math.pow(1 - p, 2);
     }
-    hero.style.setProperty('--reveal', p.toFixed(3));
+    hero.style.setProperty('--reveal', (START + (1 - START) * p).toFixed(3));
   }
 
   function request() {
     if (!queued) { queued = true; requestAnimationFrame(update); }
   }
 
-  hero.style.setProperty('--reveal', '0');
+  hero.style.setProperty('--reveal', String(START));
   window.addEventListener('scroll', request, { passive: true });
   window.addEventListener('resize', request);
   update();

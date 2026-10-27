@@ -66,7 +66,7 @@
       "mark": {
         "type": "circle",
         "opacity": 0.78,
-        "stroke": "#3F5A31",
+        "stroke": "#4A2F1C",
         "strokeWidth": 0.8
       },
       "encoding": {
@@ -102,12 +102,12 @@
               3000000
             ],
             "format": ",.0f",
-            "symbolFillColor": "#5F7D4C",
-            "symbolStrokeColor": "#3F5A31"
+            "symbolFillColor": "#6F4A2F",
+            "symbolStrokeColor": "#4A2F1C"
           }
         },
         "color": {
-          "value": "#5F7D4C"
+          "value": "#6F4A2F"
         },
         "order": {
           "field": "tonnes",
@@ -281,7 +281,7 @@
   ],
   "config": {
     "background": null,
-    "font": "Inter, 'Helvetica Neue', Arial, sans-serif",
+    "font": "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
     "title": {
       "fontSize": 14,
       "fontWeight": 600,
